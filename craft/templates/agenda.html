@@ -1,0 +1,1530 @@
+{#
+  # Agenda VIVA template
+  # ---------------
+  #
+  # When this template gets loaded, it will be because someone has accessed
+  # http://yoursite.com/ (without any URI). Craft checks to see if you have
+  # a Single section set to be the Homepage (as you do, by default), and
+  # loads the section’s Template (this file). A special ‘entry’ variable
+  # will already be set for you, assigned to the Homepage entry.
+  #
+  # It's worth noting that even if you didn't have a Homepage Single section,
+  # as long as this template remains at craft/templates/index.html, it
+  # would still be the one to get loaded when accessing http://yoursite.com/,
+  # albeit without an ‘entry’ variable already set for you.
+  #
+  # See this page for more details on how Craft routes requests:
+  # http://craftcms.com/docs/routing
+  #}
+
+  {% extends "_layout.html" %}
+
+  {% block pageTitle %}VIVA Agenda{% endblock %}
+
+  {% block main %}
+
+  <header id="header">
+    <div class="container-fluid agenda-header text-light reformat-header">
+      <div class="row fixrow pc-adjuster">
+        <div class="col fixcol">
+          <div class="container py-md-6 py-5 py-lg-8 shorten-banners">
+            <h1 class="display-4 text-uppercase">Agenda {{globalYearDates.advertisedYear}}</h1>
+            <p class="lead pr-md-10">{{entry.agendaBannerBodyCopy}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+<section id="agenda">
+    <div class="container pb-4 matchwidth">
+
+      <div class="row">
+        <div class="col pt-6 pb-3">
+          <a class="float-right text-center reformat-print" onclick="printDiv()"><u>Print Agenda</u>
+            <br><small class="text-underline text-muted">(prints filtered agenda)</small>
+          </a>
+          <nav>
+            <div class="nav text-uppercase" id="nav-tab" role="tablist">
+              <a class="nav-item active mr-4" id="nav-viva18-tab" data-toggle="tab" href="" onclick="toggleVisibility()" role="tab" aria-controls="nav-viva18" aria-selected="true">VIVA {{globalYearDates.advertisedYear}}</a>
+              <a class="nav-item" id="nav-viens-tab" data-toggle="tab" role="tab" href="" onclick="toggleVisibility()" aria-controls="nav-viens" aria-selected="false">The Veins at VIVA</a>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      <div id="printableArea1" class="vivaConferenceOpen">
+        <div class="row pb-5">
+          <div class="col">
+            <div class="tab-content" id="nav-tabContent">
+
+              <div class="tab-pane fade show active drop-shadow" id="nav-viva18" role="tabpanel" aria-labelledby="nav-viva18-tab">
+
+                <div class="bg-gray p-md-5 p-2">
+                  <form class="search-form">
+
+                    <!--<input class="form-control border-0" type="search" placeholder="&#xF002; &#032; sessions, topic, event, speaker..." aria-label="Search">-->
+                    <div class="d-flex pt-2 pt-md-4">
+
+                      <select class="mr-md-5 mr-2 form-control form-control-sm border-0" id="vivaspeakers" onchange="nameFilter(this.value)">
+                        <!--insert options here-->
+                      </select>
+
+                      <select class="mr-md-5 mr-2 form-control form-control-sm border-0" id="vivasessions" onchange="sessionFilter(this.value)">
+                        <!--insert options here-->
+                      </select>
+
+                      <select style="width:17rem !important;" class="form-control form-control-sm border-0" disabled="true" id="vivatopics" onchange="topicFilter(this.value)">
+                        <!--insert options here-->
+                      </select>
+
+                    </div>
+                  </form>
+                </div>
+
+                <div class="nav d-flex flex-row justify-content-between" id="nav-tab" role="tablist">
+                  <a class="w-25 agenda-tab active btn p-3 border-danger border-bottom-0" id="nav-mon-tab" data-toggle="tab" href="#nav-mon" role="tab" aria-controls="nav-mon" aria-selected="true"
+                  onclick="loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=1&ConferenceDay=2017-09-11', loadSchedule)">
+                  <div class="text-center text-uppercase">
+                    Mon
+                  </div>
+                </a>
+                <a class="w-25 agenda-tab btn p-3 border-danger border-bottom-0" id="nav-tues-tab" data-toggle="tab" href="#nav-tues" role="tab" aria-controls="nav-tues" aria-selected="false"
+                onclick="loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=1&ConferenceDay=2017-09-12', loadSchedule)">
+                <div class="text-center text-uppercase">
+                  Tues
+                </div>
+              </a>
+              <a class="w-25 agenda-tab btn p-3 border-danger border-bottom-0" id="nav-wed-tab" data-toggle="tab" href="#nav-wed" role="tab" aria-controls="nav-wed" aria-selected="false"
+              onclick="loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=1&ConferenceDay=2017-09-13', loadSchedule)">
+              <div class="text-center text-uppercase">
+                Wed
+              </div>
+            </a>
+            <a class="w-25 agenda-tab btn p-3 border-danger border-bottom-0" id="nav-thurs-tab" data-toggle="tab" href="#nav-thurs" role="tab" aria-controls="nav-thurs" aria-selected="false"
+            onclick="loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=1&ConferenceDay=2017-09-14', loadSchedule)">
+            <div class="text-center text-uppercase">
+              Thurs
+            </div>
+          </a>
+        </div>
+
+        <div class="tab-content" id="nav-tabContent">
+
+          <div class="tab-pane fade show active" id="nav-mon" role="tabpanel" aria-labelledby="nav-mon-tab">
+            <div class="panel-group  border border-danger p-3" id="reg-accordion">
+              <!--to be filled-->
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="nav-viens" role="tabpanel" aria-labelledby="nav-viens-tab">
+
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+      <div id="printableArea2" class="veinsConferenceOpen" style="display:none;">
+        <div class="row pb-5">
+          <div class="col">
+            <div class="tab-content" id="nav-tabContent">
+
+              <div class="tab-pane fade show active drop-shadow" id="nav-viens" role="tabpanel" aria-labelledby="nav-viva18-tab">
+
+                <div class="bg-gray p-md-5 p-2">
+                  <form class="search-form">
+
+                    <!--input class="form-control border-0" type="search" placeholder="&#xF002; &#032; sessions, topic, event, speaker..." aria-label="Search">-->
+                    <div class="d-flex pt-2 pt-md-4">
+
+                      <select class="mr-md-5 mr-2 form-control form-control-sm border-0" id="veinsspeakers" onchange="nameFilterVeins(this.value)">
+                        <!--insert options here-->
+                      </select>
+
+                      <select class="mr-md-5 mr-2 form-control form-control-sm border-0" id="veinssessions" onchange="sessionFilterVeins(this.value)">
+                        <!--insert options here-->
+                      </select>
+
+                      <select class="form-control form-control-sm border-0" id="veinstopics" onchange="topicFilterVeins(this.value)">
+                        <!--insert options here-->
+                      </select>
+
+                    </div>
+                  </form>
+                </div>
+
+                <div class="nav d-flex flex-row justify-content-between" id="nav-tab" role="tablist">
+                  <a class="w-50 agenda-tab active btn p-3 border-danger border-bottom-0" id="nav-sun-tab" data-toggle="tab" href="#nav-sun" role="tab" aria-controls="nav-mon" aria-selected="true"
+                  onclick="loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=2&ConferenceDay=2017-09-10', loadSchedule)">
+                  <div class="text-center text-uppercase">
+                    Sunday
+                  </div>
+                </a>
+                <a class="w-50 agenda-tab btn p-3 border-danger border-bottom-0" id="nav-mon-tab" data-toggle="tab" href="#nav-mon" role="tab" aria-controls="nav-tues" aria-selected="false"
+                onclick="loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=2&ConferenceDay=2017-09-11', loadSchedule)">
+                <div class="text-center text-uppercase">
+                  Monday
+                </div>
+              </a>
+        </div>
+
+        <div class="tab-content" id="nav-tabContent">
+
+          <div class="tab-pane fade show active" id="nav-sun" role="tabpanel" aria-labelledby="nav-sun-tab">
+            <div class="panel-group border border-danger p-3 veinsAgenda" id="reg-accordion-2">
+              <!--to be filled-->
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="nav-viens" role="tabpanel" aria-labelledby="nav-viens-tab">
+
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</section>
+
+<script type ="text/javascript">
+
+//toggleVisibility();
+loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=1&ConferenceDay=2017-09-11', loadSchedule);
+
+var sessions = new Array();
+var topics = new Array();
+var speakers = new Array();
+var nursesAlready = 0;
+
+function loadDoc(url, cFunction) {
+  var xhttp;
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      cFunction(this);
+    }
+  };
+  xhttp.open("GET", url, true);
+  xhttp.send();
+}
+
+function loadSchedule(xhttp) {
+  sessions = new Array();
+  topics = new Array();
+  speakers = new Array();
+  document.getElementById("vivatopics").disabled = true;
+  document.getElementById("veinstopics").disabled = true;
+  //toggleVisibility();
+  var response = JSON.parse(xhttp.responseText);
+  var data = response;
+  var text = "<div class='panel'>";
+  var sessionsOptions = "<option>All sessions</option>";
+  var topicOptions = "<option>All topics</option>";
+  var speakerOptions = "";
+  for (var i = 0; i < data.Data.Items.length; i++) {
+    //Event data
+    var currentEvent = data.Data.Items[i].event_title;
+    var eventSpeakers = data.Data.Items[i].event_speakers;
+    var eventStart = data.Data.Items[i].start_time_formatted;
+    var eventEnd = data.Data.Items[i].end_time_formatted;
+    var eventTimeString = eventStart + "-" + eventEnd;
+
+    //Topic data
+    var currentTopic = data.Data.Items[i].topic_title;
+    var topicSpeakers = data.Data.Items[i].topic_speakers;
+    var topicStart = data.Data.Items[i].topic_start_time_formatted;
+    var topicEnd = data.Data.Items[i].topic_end_time_formatted;
+    var topicTimeString = topicStart + "-" + topicEnd;
+    //if (currentTopic = "REFRESHMENT BREAK & EXHIBITS")
+
+    //Session data
+    var currentSession = data.Data.Items[i].session_title;
+    var sessionStart = data.Data.Items[i].session_start_time_formatted;
+    var sessionEnd = data.Data.Items[i].session_end_time_formatted;
+    var sessionTimeString = sessionStart + "-" + sessionEnd;
+
+    if (i > 0)
+    {
+      //Grab previous session data to check if new topic, or if new session
+      var previousEvent = data.Data.Items[i - 1].event_title;
+      var previousTopic = data.Data.Items[i - 1].topic_title;
+      var previousSession = data.Data.Items[i - 1].session_title;
+      if (previousSession == currentSession)
+      {
+        if (previousTopic == currentTopic)
+        {
+          //new event
+          if (currentEvent != "")
+          {
+            if (eventSpeakers.length >= 1)
+            {
+              if (eventSpeakers.length < 60)
+              {
+                if (eventSpeakers != "<span></span>")
+                {
+                  if (eventSpeakers.indexOf(":") == -1)
+                  {
+                    if (eventSpeakers.indexOf(";") != -1)
+                    {
+                      var mult = eventSpeakers.split(";");
+                      var len = mult.length;
+                      speakerOptions += "<option>" + mult[0] + "</option>";
+                      speakerOptions += "<option>" + mult[1] + "</option>";
+                      speakers.push(mult[0]);
+                      speakers.push(mult[1]);
+                    }
+                    else {
+                      speakerOptions += "<option>" + eventSpeakers + "</option>";
+                      speakers.push(eventSpeakers);
+                    }
+                  }
+                }
+              }
+            }
+            text += "<li id='" + nameToId(simpleName(eventSpeakers)) + "' class='speaker'><span class='float-right font-italic d-none d-md-inline'>" + eventTimeString + "</span>" + currentEvent + " | " + eventSpeakers + "</li>";
+          }
+        }
+        else if (currentTopic != "")
+        {
+          //create new topic
+          topicOptions += "<option>" + uppercase(currentTopic) + "</option>";
+          topics.push(uppercase(currentTopic));
+          text += "</ul></div>";
+          text +=
+          "<div class='panel-heading'>" +
+          "<h4 id='" + nameToId(currentTopic) + "header' class='panel-title topic " + nameToId(currentTopic) + "'>" +
+          "<a class='accordion-toggle text-secondary font-sm' data-toggle='collapse' data-parent='#accordion' href='#" + nameToId(currentTopic) + "'>" +
+          "<span class='float-right font-italic text-muted'>" + topicTimeString + "</span>" + currentTopic +
+          "</a>" +
+          "<div class='panel-description font-sm pl-md-5 pt-2'>" +
+          "<ul class='agenda-breakdown font-sm list-unstyled'>" +
+          "<li>" + topicSpeakers + "</li>" +
+          "</ul>" +
+          "</div>" +
+          "</h4>" +
+          "</div>" +
+          "<div id='" + nameToId(currentTopic) + "' class='panel-collapse collapse pl-md-5'>" +
+          "<ul class='agenda-breakdown font-sm list-unstyled'>";
+          //new event
+          if (currentEvent != "")
+          {
+            if (eventSpeakers.length >= 1)
+            {
+              if (eventSpeakers.length < 60)
+              {
+                if (eventSpeakers != "<span></span>")
+                {
+                  if (eventSpeakers.indexOf(":") == -1)
+                  {
+                    if (eventSpeakers.indexOf(";") != -1)
+                    {
+                      var mult = eventSpeakers.split(";");
+                      var len = mult.length;
+                      speakerOptions += "<option>" + mult[0] + "</option>";
+                      speakerOptions += "<option>" + mult[1] + "</option>";
+                      speakers.push(mult[0]);
+                      speakers.push(mult[1]);
+                    }
+                    else {
+                      speakerOptions += "<option>" + eventSpeakers + "</option>";
+                      speakers.push(eventSpeakers);
+                    }
+                  }
+                }
+              }
+            }
+            text += "<li id='" + nameToId(simpleName(eventSpeakers)) + "' class='speaker'><span class='float-right font-italic d-none d-md-inline'>" + eventTimeString + "</span>" + currentEvent + " | " + eventSpeakers + "</li>";
+          }
+        }
+      }
+      else
+      {
+        //create new session
+        sessionsOptions += "<option>" + currentSession + "</option>";
+        sessions.push(currentSession);
+        text += "</ul></div></div></div></div>";
+        //create new session
+        text +=
+        "<div id='" + nameToId(currentSession) + "header' class='panel-heading session'>" +
+        "<h4 class='panel-title pt-2'>" +
+        "<a class='accordion-toggle text-secondary' data-toggle='collapse' data-parent='#accordion' href='#" + nameToId(currentSession) + "'>" +
+        "<span class='float-right font-italic text-muted'>" + sessionTimeString + "</span>" + currentSession +
+        "</a>" +
+        "</h4>" +
+        "</div>" +
+        "<div id='" + nameToId(currentSession) + "' class='panel-collapse collapse'>" +
+        "<div class='panel-body font-sm text-muted pl-md-5'>" +
+        "<div class='panel'>";
+        //New topic
+        topicOptions += "<option>" + uppercase(currentTopic) + "</option>";
+        topics.push(uppercase(currentTopic));
+        text +=
+        "<div class='panel-heading'>" +
+        "<h4 id='" + nameToId(currentTopic) + "header' class='panel-title topic " + nameToId(currentTopic) + "'>" +
+        "<a class='accordion-toggle text-secondary font-sm' data-toggle='collapse' data-parent='#accordion' href='#" + nameToId(currentTopic) + "'>" +
+        "<span class='float-right font-italic text-muted'>" + topicTimeString + "</span>" + currentTopic +
+        "</a>" +
+        "<div class='panel-description font-sm pl-md-5 pt-2'>" +
+        "<ul class='agenda-breakdown font-sm list-unstyled'>" +
+        "<li>" + topicSpeakers + "</li>" +
+        "</ul>" +
+        "</div>" +
+        "</h4>" +
+        "</div>" +
+        "<div id='" + nameToId(currentTopic) + "' class='panel-collapse collapse pl-md-5'>" +
+        "<ul class='agenda-breakdown font-sm list-unstyled'>";
+        //new event
+        if (eventSpeakers.length >= 1)
+        {
+          if (eventSpeakers.length < 60)
+          {
+            if (eventSpeakers != "<span></span>")
+            {
+              if (eventSpeakers.indexOf(":") == -1)
+              {
+                if (eventSpeakers.indexOf(";") != -1)
+                {
+                  var mult = eventSpeakers.split(";");
+                  var len = mult.length;
+                  speakerOptions += "<option>" + mult[0] + "</option>";
+                  speakerOptions += "<option>" + mult[1] + "</option>";
+                  speakers.push(mult[0]);
+                  speakers.push(mult[1]);
+                }
+                else {
+                  speakerOptions += "<option>" + eventSpeakers + "</option>";
+                  speakers.push(eventSpeakers);
+                }
+              }
+            }
+          }
+        }
+        text += "<li id='" + nameToId(simpleName(eventSpeakers)) + "' class='speaker'><span class='float-right font-italic d-none d-md-inline'>" + eventTimeString + "</span>" + currentEvent + " | " + eventSpeakers + "</li>";
+      }
+    }
+    else {
+      //create new session
+      sessionsOptions += "<option>" + currentSession + "</option>";
+      sessions.push(currentSession);
+      text +=
+      "<div id='" + nameToId(currentSession) + "header' class='panel-heading session'>" +
+      "<h4 class='panel-title pt-2'>" +
+      "<a class='accordion-toggle text-secondary' data-toggle='collapse' data-parent='#accordion' href='#" + nameToId(currentSession) + "'>" +
+      "<span class='float-right font-italic text-muted'>" + sessionTimeString + "</span>" + currentSession +
+      "</a>" +
+      "</h4>" +
+      "</div>" +
+      "<div id='" + nameToId(currentSession) + "' class='panel-collapse collapse'>" +
+      "<div class='panel-body font-sm text-muted pl-md-5'>" +
+      "<div class='panel'>";
+      //text += "<h2>" + currentSession + " | " + sessionTimeString + "</h2>";
+      //create new topic
+      //text += "<h4>" + currentTopic + " | " + topicTimeString + "</h4>";
+      //text += "<h4>Speakers: " + topicSpeakers + "</h4>";
+      topicOptions += "<option>" + uppercase(currentTopic) + "</option>";
+      topics.push(uppercase(currentTopic));
+      text +=
+      "<div class='panel-heading'>" +
+      "<h4 id='" + nameToId(currentTopic) + "header' class='panel-title topic " + nameToId(currentTopic) + "'>" +
+      "<a class='accordion-toggle text-secondary font-sm' data-toggle='collapse' data-parent='#accordion' href='#" + nameToId(currentTopic) + "'>" +
+      "<span class='float-right font-italic text-muted'>" + topicTimeString + "</span>" + currentTopic +
+      "</a>" +
+      "<div class='panel-description font-sm pl-md-5 pt-2'>" +
+      "<ul class='agenda-breakdown font-sm list-unstyled'>" +
+      "<li>" + topicSpeakers + "</li>" +
+      "</ul>" +
+      "</div>" +
+      "</h4>" +
+      "</div>" +
+      "<div id='" + nameToId(currentTopic) + "' class='panel-collapse collapse pl-md-5'>" +
+      "<ul class='agenda-breakdown font-sm list-unstyled'>";
+
+
+      //new event
+      //text += "<p>" + currentEvent + " | " + eventTimeString + "</p>";
+      //text += "<p>Speaker: " + eventSpeakers + "</p>";
+      if (eventSpeakers.length >= 1)
+      {
+        if (eventSpeakers.length < 60)
+        {
+          if (eventSpeakers != "<span></span>")
+          {
+            if (eventSpeakers.indexOf(":") == -1)
+            {
+              if (eventSpeakers.indexOf(";") != -1)
+              {
+                var mult = eventSpeakers.split(";");
+                var len = mult.length;
+                speakerOptions += "<option>" + mult[0] + "</option>";
+                speakerOptions += "<option>" + mult[1] + "</option>";
+                speakers.push(mult[0]);
+                speakers.push(mult[1]);
+              }
+              else {
+                speakerOptions += "<option>" + eventSpeakers + "</option>";
+                speakers.push(eventSpeakers);
+              }
+            }
+          }
+        }
+      }
+      text += "<li id='" + nameToId(simpleName(eventSpeakers)) + "' class='speaker'><span class='float-right font-italic d-none d-md-inline'>" + eventTimeString + "</span>" + currentEvent + " | " + eventSpeakers + "</li>";
+    }
+
+  };
+  //Add closing divs to string
+  //Change this to panel
+  text += "</ul></div></div></div></div></div>";
+  var veinsActive = $('#nav-viens-tab').hasClass("active");
+  var vivaActive = $('#nav-viva18-tab').hasClass("active");
+
+  //remove empty topics
+  // Array to keep track of duplicates
+  topics = removeEmpty(topics);
+  topics = topics.filter( function( item, index, inputArray ) {
+           return inputArray.indexOf(item) == index;
+    });
+
+  if (vivaActive)
+  {
+    document.getElementById("vivasessions").innerHTML = sessionsOptions;
+    document.getElementById("vivatopics").innerHTML = topicOptions;
+    document.getElementById("vivaspeakers").innerHTML = speakerOptions;
+    document.getElementById('reg-accordion').innerHTML = text;
+
+    //Initiate sort here
+    var select = $('#vivaspeakers');
+    select.html(select.find('option').sort(function(x, y) {
+      // to change to descending order switch "<" for ">"
+      return $(x).text() > $(y).text() ? 1 : -1;
+    }));
+
+    //remove speaker duplicates
+    var optionValues =[];
+    $('#vivaspeakers option').each(function(){
+      if($.inArray(this.innerHTML, optionValues) >-1){
+        $(this).remove()
+      } else {
+        optionValues.push(this.value);
+      }
+    });
+    document.getElementById("vivaspeakers").innerHTML = document.getElementById("vivaspeakers").innerHTML;
+
+    optionValues =[];
+    $('#vivaspeakers option').each(function(){
+      if($.inArray(this.innerHTML, optionValues) >-1){
+        $(this).remove()
+      } else {
+        optionValues.push(this.value);
+      }
+    });
+    document.getElementById("vivaspeakers").innerHTML = "<option>All speakers</option>" + document.getElementById("vivaspeakers").innerHTML;
+  }
+  if (veinsActive) {
+    document.getElementById("veinssessions").innerHTML = sessionsOptions;
+    document.getElementById("veinstopics").innerHTML = topicOptions;
+    document.getElementById("veinsspeakers").innerHTML = speakerOptions;
+    document.getElementById('reg-accordion-2').innerHTML = text;
+
+    //Initiate sort here
+    var select = $('#veinsspeakers');
+    select.html(select.find('option').sort(function(x, y) {
+      // to change to descending order switch "<" for ">"
+      return $(x).text() > $(y).text() ? 1 : -1;
+    }));
+    var optionValues =[];
+    $('#veinsspeakers option').each(function(){
+      if($.inArray(this.innerHTML, optionValues) >-1) {
+        $(this).remove()
+      } else {
+        optionValues.push(this.value);
+      }
+    });
+    document.getElementById("veinsspeakers").innerHTML = "<option>All speakers</option>" + document.getElementById("veinsspeakers").innerHTML;
+  }
+  var uniqueSpeakers = [];
+  $.each(speakers, function(i, el){
+    if($.inArray(el, uniqueSpeakers) === -1) uniqueSpeakers.push(el);
+  });
+  speakers = uniqueSpeakers;
+
+  //Check for pre-selected nurses
+  //Nurses__Techs_Symposium
+  var agendaSelected = readCookie("agendaSelected");
+  if (agendaSelected == "nurses")
+  {
+    $( "#Nurses__Techs_Symposium" ).addClass( "show" );
+  }
+  document.cookie="agendaSelected=none";
+
+  //Check for veins selected
+  var conferenceSelected = readCookie("conferenceSelected");
+  if (conferenceSelected == "veins")
+  {
+    console.log(conferenceSelected);
+    preVeins();
+    document.cookie="conferenceSelected=none";
+  }
+
+}
+
+function removeEmpty (value) {
+  return value.filter(function (item) {
+    return item !== '';
+  });
+}
+
+var vivaFirst = 0;
+var veinsFirst = 0;
+
+function preVeins () {
+  var s = $('#nav-viens-tab').addClass("active");
+  var s = $('#nav-viva18-tab').removeClass("active");
+
+  $(".vivaConferenceOpen").css('display', 'none');
+  $(".veinsConferenceOpen").css('display', 'block');
+  loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=2&ConferenceDay=2017-09-10', loadSchedule);
+}
+
+function toggleVisibility () {
+  var s = $('#nav-viens-tab').hasClass("active");
+
+  if (s) {
+    if (veinsFirst == 0)
+    {
+      veinsFirst = 1;
+      loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=1&ConferenceDay=2017-09-11', loadSchedule);
+    }
+    $(".vivaConferenceOpen").css('display', 'block');
+    $(".veinsConferenceOpen").css('display', 'none');
+  }
+  else {
+    if (vivaFirst == 0)
+    {
+      vivaFirst = 1;
+      loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=2&ConferenceDay=2017-09-10', loadSchedule);
+    }
+    $(".vivaConferenceOpen").css('display', 'none');
+    $(".veinsConferenceOpen").css('display', 'block');
+  }
+}
+
+function nameToId(name) {
+  var id = name;
+
+  if (name.slice(name.length-1, name.length) == " ")
+  {
+    id = name.slice(0, name.length-1);
+  }
+
+  var i = 0, strLength = id.length;
+  for(i; i < strLength; i++) {
+    id = id.replace(":", "");
+  }
+  i = 0;
+  for(i; i < strLength; i++) {
+    id = id.replace(" ", "_");
+  }
+  i = 0;
+  for(i; i < strLength; i++) {
+    id = id.replace("/", "");
+  }
+  i = 0;
+  for(i; i < strLength; i++) {
+    id = id.replace("@", "");
+  }
+  i = 0;
+  for(i; i < strLength; i++) {
+    id = id.replace("'", "");
+  }
+  i = 0;
+  for(i; i < strLength; i++) {
+    id = id.replace(".", "");
+  }
+  i = 0;
+  for(i; i < strLength; i++) {
+    id = id.replace("!", "");
+  }
+  i = 0;
+  for(i; i < strLength; i++) {
+    id = id.replace(",", "");
+  }
+  i = 0;
+  for(i; i < strLength; i++) {
+    id = id.replace("+", "");
+  }
+  i = 0;
+  for(i; i < strLength; i++) {
+    id = id.replace("&", "and");
+  }
+  id = id.replace("<span>", "");
+  id = id.replace("</span>", "");
+  return id;
+}
+
+function removeCommas(name)
+{
+  var i = 0, strLength = name.length;
+  for(i; i < strLength; i++) {
+    name = name.replace(",", "");
+  }
+  i = 0;
+  for(i; i < strLength; i++) {
+    name = name.replace(".", "");
+  }
+  i = 0;
+  for(i; i < strLength; i++) {
+    name = name.replace("<span>", "");
+  }
+  i = 0;
+  for(i; i < strLength; i++) {
+    name = name.replace("</span>", "");
+  }
+  return name;
+}
+
+function simpleName(name) {
+  var name = removeCommas(name);
+  nameArray = name.split(" ");
+  var nameToAdd = nameArray[0] + " " + nameArray[1];
+  return nameToAdd;
+}
+
+function nameFilter(input) {
+  var selectedVivaSession = document.getElementById("vivasessions").value;
+  var selectedVivaTopic = document.getElementById("vivatopics").value;
+  console.log(sessions);
+  var speakerName = simpleName(input);
+  console.log(speakerName);
+  $( "li" ).filter( ".speaker" ).css( "display", "block" );
+  if (input != "All speakers")
+  {
+    //Hide speaker div if not selected
+    speakerName = nameToId(speakerName);
+    speakerName = "#" + speakerName;
+    $( ".speaker" ).not( speakerName ).css( "display", "none" );
+
+    //iterate through sessions update session list
+    var updatedSessions = "<option>All sessions</option>";
+    for (i = 0; i < sessions.length; i++)
+    {
+      var sessionId = nameToId(sessions[i]);
+      var currentSession = "#" + sessionId;
+      sessionId = "#" + sessionId + "header";
+
+      if ($( currentSession ).find( speakerName ).length == 0) {
+        $( sessionId ).css( "display", "none" );
+      }
+      else {
+        if (selectedVivaSession == "All sessions") {
+          $( sessionId ).css( "display", "block" );
+          $( currentSession ).addClass( "show" );
+          if (selectedVivaSession == sessions[i])
+          {
+            updatedSessions += "<option selected='true'>" + sessions[i] + "</option>";
+          }
+          else {
+            updatedSessions += "<option>" + sessions[i] + "</option>";
+          }
+        }
+        else {
+          if (selectedVivaSession == sessions[i])
+          {
+            updatedSessions += "<option selected='true'>" + sessions[i] + "</option>";
+            $( sessionId ).css( "display", "block" );
+            $( currentSession ).addClass( "show" );
+          }
+        }
+      }
+    }
+    document.getElementById("vivasessions").innerHTML = updatedSessions;
+
+    //iterate through topics, remove topic if doesn't have speaker
+    for (i = 0; i < topics.length; i++)
+    {
+      var currentTopic = topics[i].toUpperCase();
+      currentTopic = nameToId(currentTopic);
+      var classname = currentTopic;
+      currentTopic = "#" + currentTopic;
+      //Check if topic div has child
+      if ($( currentTopic ).find( speakerName ).length == 0) {
+        console.log(currentTopic);
+        var refreshes = document.getElementsByClassName(classname);
+        for (x = 0; x < refreshes.length; x++)
+        {
+          refreshes[x].style.display = "none";
+        }
+        var currentTopicHeader = currentTopic + "header";
+        $( currentTopicHeader ).css( "display", "none" );
+      }
+      else {
+        var currentTopicHeader = currentTopic + "header";
+        $( currentTopicHeader ).css( "display", "block" );
+        $( currentTopic ).addClass( "show" );
+      }
+    }
+
+  }
+  else
+  {
+    if (selectedVivaSession == "All sessions")
+    {
+      var updatedSpeakers = "";
+      for (i = 0; i < speakers.length; i++)
+      {
+        updatedSpeakers += "<option>" + speakers[i] + "</option>";
+      }
+      //Update speaker list
+      document.getElementById("vivaspeakers").innerHTML = updatedSpeakers;
+      var select = $('#vivaspeakers');
+      select.html(select.find('option').sort(function(x, y) {
+        // to change to descending order switch "<" for ">"
+        return $(x).text() > $(y).text() ? 1 : -1;
+      }));
+
+      var optionValues =[];
+      $('#vivaspeakers option').each(function(){
+        if($.inArray(this.innerHTML, optionValues) >-1){
+          $(this).remove()
+        }else{
+          optionValues.push(this.value);
+        }
+      });
+      document.getElementById("vivaspeakers").innerHTML = "<option>All speakers</option>" + document.getElementById("vivaspeakers").innerHTML;
+    }
+    if (selectedVivaSession == "All sessions" && selectedVivaTopic == "All topics")
+    {
+      $( ".session" ).filter( ".panel-heading" ).css( "display", "block" );
+      $( ".topic" ).filter( ".panel-title" ).css( "display", "block" );
+      var updatedSessions = "<option>All sessions</option>";
+      for (i = 0; i < sessions.length; i++)
+      {
+        updatedSessions += "<option>" + sessions[i] + "</option>";
+      }
+      console.log(updatedSessions);
+      document.getElementById("vivasessions").innerHTML = updatedSessions;
+    }
+
+    //Check if specific session and all topics
+    if (selectedVivaSession != "All sessions" && selectedVivaTopic == "All topics")
+    {
+      var sessionId = nameToId(selectedVivaSession);
+      sessionId = "#" + sessionId;
+      for (i = 0; i < topics.length; i++)
+      {
+        var currentTopic = topics[i].toUpperCase();
+        currentTopic = nameToId(currentTopic);
+        currentTopic = "#" + currentTopic;
+
+        //Check if topic div has child
+        if ($( sessionId ).find( currentTopic ).length == 0) {
+          var currentTopicHeader = currentTopic + "header";
+          $( currentTopicHeader ).css( "display", "none" );
+        }
+        else {
+          var currentTopicHeader = currentTopic + "header";
+          $( currentTopicHeader ).css( "display", "block" );
+        }
+      }
+    }
+  }
+}
+
+function nameFilterVeins(input) {
+  var selectedVeinsSession = document.getElementById("veinssessions").value;
+  var selectedVeinsTopic = document.getElementById("veinstopics").value;
+  $( "li" ).filter( ".speaker" ).css( "display", "block" );
+  var speakerName = simpleName(input);
+  if (input != "All speakers")
+  {
+    //Hide speaker div if not selected
+    speakerName = nameToId(speakerName);
+    speakerName = "#" + speakerName;
+    $( ".speaker" ).not( speakerName ).css( "display", "none" );
+
+    //iterate through sessions update session list
+    var updatedSessions = "<option>All sessions</option>";
+    for (i = 0; i < sessions.length; i++)
+    {
+      var sessionId = nameToId(sessions[i]);
+      var currentSession = "#" + sessionId;
+      sessionId = "#" + sessionId + "header";
+
+      if ($( currentSession ).find( speakerName ).length == 0) {
+        $( sessionId ).css( "display", "none" );
+      }
+      else {
+        if (selectedVeinsSession == "All sessions") {
+          $( sessionId ).css( "display", "block" );
+          $( currentSession ).addClass( "show" );
+          if (selectedVeinsSession == sessions[i])
+          {
+            updatedSessions += "<option selected='true'>" + sessions[i] + "</option>";
+          }
+          else {
+            updatedSessions += "<option>" + sessions[i] + "</option>";
+          }
+        }
+        else {
+          if (selectedVeinsSession == sessions[i])
+          {
+            updatedSessions += "<option selected='true'>" + sessions[i] + "</option>";
+            $( sessionId ).css( "display", "block" );
+            $( currentSession ).addClass( "show" );
+          }
+        }
+      }
+    }
+    document.getElementById("veinssessions").innerHTML = updatedSessions;
+
+    //iterate through topics, remove topic if doesn't have speaker
+    for (i = 0; i < topics.length; i++)
+    {
+      var currentTopic = topics[i].toUpperCase();
+      currentTopic = nameToId(currentTopic);
+      var classname = currentTopic;
+      currentTopic = "#" + currentTopic;
+
+      //Check if topic div has child
+      if ($( currentTopic ).find( speakerName ).length == 0) {
+        var currentTopicHeader = currentTopic + "header";
+        $( currentTopicHeader ).css( "display", "none" );
+        var refreshes = document.getElementsByClassName(classname);
+        for (x = 0; x < refreshes.length; x++)
+        {
+          refreshes[x].style.display = "none";
+        }
+      }
+      else {
+        var currentTopicHeader = currentTopic + "header";
+        $( currentTopicHeader ).css( "display", "block" );
+        $( currentTopic ).addClass( "show" );
+      }
+    }
+  }
+  else
+  {
+    if (selectedVeinsSession == "All sessions")
+    {
+      var updatedSpeakers = "";
+      for (i = 0; i < speakers.length; i++)
+      {
+        updatedSpeakers += "<option>" + speakers[i] + "</option>";
+      }
+      //Update speaker list
+      document.getElementById("veinsspeakers").innerHTML = updatedSpeakers;
+      var select = $('#veinsspeakers');
+      select.html(select.find('option').sort(function(x, y) {
+        // to change to descending order switch "<" for ">"
+        return $(x).text() > $(y).text() ? 1 : -1;
+      }));
+
+      var optionValues =[];
+      $('#veinsspeakers option').each(function(){
+        if($.inArray(this.innerHTML, optionValues) >-1){
+          $(this).remove()
+        }else{
+          optionValues.push(this.value);
+        }
+      });
+      document.getElementById("veinsspeakers").innerHTML = "<option>All speakers</option>" + document.getElementById("veinsspeakers").innerHTML;
+    }
+    if (selectedVeinsSession == "All sessions" && selectedVeinsTopic == "All topics")
+    {
+      $( ".session" ).filter( ".panel-heading" ).css( "display", "block" );
+      $( ".topic" ).filter( ".panel-title" ).css( "display", "block" );
+      var updatedSessions = "<option>All sessions</option>";
+      for (i = 0; i < sessions.length; i++)
+      {
+        updatedSessions += "<option>" + sessions[i] + "</option>";
+      }
+      console.log(updatedSessions);
+      document.getElementById("veinssessions").innerHTML = updatedSessions;
+    }
+
+    //Check if specific session and all topics
+    if (selectedVeinsSession != "All sessions" && selectedVeinsTopic == "All topics")
+    {
+      var sessionId = nameToId(selectedVeinsSession);
+      sessionId = "#" + sessionId;
+      for (i = 0; i < topics.length; i++)
+      {
+        var currentTopic = topics[i].toUpperCase();
+        currentTopic = nameToId(currentTopic);
+        currentTopic = "#" + currentTopic;
+
+        //Check if topic div has child
+        if ($( sessionId ).find( currentTopic ).length == 0) {
+          var currentTopicHeader = currentTopic + "header";
+          $( currentTopicHeader ).css( "display", "none" );
+        }
+        else {
+          var currentTopicHeader = currentTopic + "header";
+          $( currentTopicHeader ).css( "display", "block" );
+        }
+      }
+    }
+  }
+}
+
+function sessionFilter(input) {
+  var selectedVivaSpeaker = document.getElementById("vivaspeakers").value;
+  $( ".session" ).filter( ".panel-heading" ).css( "display", "block" );
+  if (input != "All sessions")
+  {
+    //Set topic to enabled
+    document.getElementById("vivatopics").disabled = false;
+    if (selectedVivaSpeaker == "All speakers")
+    {
+      //if session has topic, add to list
+      var updatedTopics = "";
+      for (i = 0; i < topics.length; i++)
+      {
+        var sessionId = nameToId(input);
+        var sessionId = "#" + sessionId;
+        var currentTopic = topics[i].toUpperCase();
+        currentTopic = nameToId(currentTopic);
+        currentTopic = "#" + currentTopic;
+        if ($( sessionId ).find( currentTopic ).length > 0)
+        {
+          currentTopic = currentTopic + "header";
+          $( currentTopic ).css( "display", "block" );
+          updatedTopics += "<option>" + topics[i] + "</option>";
+        }
+      }
+      document.getElementById("vivatopics").innerHTML = "<option>All topics</topics>" + updatedTopics;
+    }
+    else if (selectedVivaSpeaker != "All speakers")
+    {
+      var updatedTopics = "";
+      for (i = 0; i < topics.length; i++)
+      {
+        var sessionId = nameToId(input);
+        var sessionId = "#" + sessionId;
+        var currentTopic = topics[i].toUpperCase();
+        currentTopic = nameToId(currentTopic);
+        currentTopic = "#" + currentTopic;
+        if ($( sessionId ).find( currentTopic ).length > 0)
+        {
+          var speakerId = nameToId(selectedVivaSpeaker);
+          speakerId = "#" + speakerId;
+          if ($( currentTopic ).find( speakerId ).length > 0)
+          {
+            updatedTopics += "<option>" + topics[i] + "</option>";
+          }
+        }
+      }
+      document.getElementById("vivatopics").innerHTML = "<option>All topics</topics>" + updatedTopics;
+    }
+
+    //Create selected session ID
+    var sessionId = nameToId(input);
+    var showInput = "#" + sessionId;
+    sessionId = "#" + sessionId + "header";
+    $( ".session" ).not( sessionId ).css( "display", "none" );
+    $( ".panel-collapse" ).filter( showInput ).addClass( "show" );
+    $( ".panel-collapse" ).not( showInput ).removeClass( "show" );
+    //iterate through speaker list
+    var updatedSpeakers = "";
+    for (i = 0; i < speakers.length; i++)
+    {
+      var speaker = speakers[i];
+      var speakerId = nameToId(speaker);
+      speakerId = "#" + speakerId;
+      if ($( showInput ).find( speakerId ).length > 0 ) {
+        if (selectedVivaSpeaker == speaker) {
+          updatedSpeakers += "<option selected='true'>" + speaker + "</option>";
+        }
+        else {
+          updatedSpeakers += "<option>" + speaker + "</option>";
+        }
+      }
+      //console.log($( "#Aortic_Armageddon" ).find( "#Daniel_Clair" ).length);
+    }
+
+    //Update speaker list
+    document.getElementById("vivaspeakers").innerHTML = updatedSpeakers;
+    var select = $('#vivaspeakers');
+    select.html(select.find('option').sort(function(x, y) {
+      // to change to descending order switch "<" for ">"
+      return $(x).text() > $(y).text() ? 1 : -1;
+    }));
+
+    var optionValues =[];
+    $('#vivaspeakers option').each(function(){
+      if($.inArray(this.innerHTML, optionValues) >-1){
+        $(this).remove()
+      }else{
+        optionValues.push(this.value);
+      }
+    });
+    document.getElementById("vivaspeakers").innerHTML = "<option>All speakers</option>" + document.getElementById("vivaspeakers").innerHTML;
+  }
+  else {
+    //Reset topics
+    document.getElementById("vivaspeakers").disabled = false;
+    document.getElementById("vivatopics").disabled = true;
+    var updatedTopics = "<option>All topics</option>";
+    for (i = 0; i < topics.length; i++)
+    {
+      var currentTopic = topics[i].toUpperCase();
+      currentTopic = nameToId(currentTopic);
+      currentTopic = "#" + currentTopic + "header";
+      $( currentTopic ).css( "display", "block" );
+      updatedTopics += "<option>" + topics[i] + "</option>";
+    }
+    document.getElementById("vivatopics").innerHTML = updatedTopics;
+
+    //If all speakers
+    if (selectedVivaSpeaker == "All speakers")
+    {
+      var updatedSessions = "<option>All sessions</option>";
+      for (i = 0; i < sessions.length; i++)
+      {
+        updatedSessions += "<option>" + sessions[i] + "</option>";
+      }
+      document.getElementById("vivasessions").innerHTML = updatedSessions;
+
+      var updatedSpeakers = "";
+      for (i = 0; i < speakers.length; i++)
+      {
+        updatedSpeakers += "<option>" + speakers[i] + "</option>";
+      }
+
+      //Update speaker list
+      document.getElementById("vivaspeakers").innerHTML = updatedSpeakers;
+      var select = $('#vivaspeakers');
+      select.html(select.find('option').sort(function(x, y) {
+        // to change to descending order switch "<" for ">"
+        return $(x).text() > $(y).text() ? 1 : -1;
+      }));
+
+      var optionValues =[];
+      $('#vivaspeakers option').each(function(){
+        if($.inArray(this.innerHTML, optionValues) >-1){
+          $(this).remove()
+        }else{
+          optionValues.push(this.value);
+        }
+      });
+      document.getElementById("vivaspeakers").innerHTML = "<option>All speakers</option>" + document.getElementById("vivaspeakers").innerHTML;
+    }
+    else
+    {
+      //Set session list to be only those that match current speaker
+      var speakerName = nameToId(selectedVivaSpeaker);
+      speakerName = "#" + speakerName;
+      var updatedSessions = "<option>All sessions</option>";
+      for (i = 0; i < sessions.length; i++)
+      {
+        var sessionId = nameToId(sessions[i]);
+        var currentSession = "#" + sessionId;
+        if ($( currentSession ).find( speakerName ).length == 0) {
+          var currentSessionHeader = currentSession + "header";
+          $( currentSessionHeader ).css( "display", "none" );
+        }
+      }
+
+      //Make sure current topics don't include speakers it shouldn't
+      for (i = 0; i < topics.length; i++)
+      {
+        var currentTopic = topics[i].toUpperCase();
+        currentTopic = nameToId(currentTopic);
+        currentTopic = "#" + currentTopic;
+        var speakerId = nameToId(selectedVivaSpeaker);
+        speakerId = "#" + speakerId;
+        if ($( currentTopic ).find( speakerId ).length == 0)
+        {
+          currentTopic = currentTopic + "header";
+          $( currentTopic ).css('display', 'none');
+        }
+      }
+
+      //Update speaker list to include all speakers
+      var updatedSpeakers = "";
+      for (i = 0; i < speakers.length; i++)
+      {
+        if (selectedVivaSpeaker == speakers[i])
+        {
+          updatedSpeakers += "<option selected='true'>" + speakers[i] + "</option>";
+        }
+        else {
+          updatedSpeakers += "<option>" + speakers[i] + "</option>";
+        }
+      }
+
+      //Update speaker list
+      document.getElementById("vivaspeakers").innerHTML = updatedSpeakers;
+      var select = $('#vivaspeakers');
+      select.html(select.find('option').sort(function(x, y) {
+        // to change to descending order switch "<" for ">"
+        return $(x).text() > $(y).text() ? 1 : -1;
+      }));
+
+      var optionValues =[];
+      $('#vivaspeakers option').each(function(){
+        if($.inArray(this.innerHTML, optionValues) >-1){
+          $(this).remove()
+        }else{
+          optionValues.push(this.value);
+        }
+      });
+      document.getElementById("vivaspeakers").innerHTML = "<option>All speakers</option>" + document.getElementById("vivaspeakers").innerHTML;
+
+      //Update topics in case some need to reappear
+
+    }
+  }
+}
+
+function sessionFilterVeins(input) {
+  var selectedVeinsSpeaker = document.getElementById("veinsspeakers").value;
+  $( ".session" ).filter( ".panel-heading" ).css( "display", "block" );
+  if (input != "All sessions")
+  {
+    //Set topic to enabled
+    document.getElementById("veinstopics").disabled = false;
+    if (selectedVeinsSpeaker == "All speakers")
+    {
+      //if session has topic, add to list
+      var updatedTopics = "";
+      for (i = 0; i < topics.length; i++)
+      {
+        var sessionId = nameToId(input);
+        var sessionId = "#" + sessionId;
+        var currentTopic = topics[i].toUpperCase();
+        currentTopic = nameToId(currentTopic);
+        currentTopic = "#" + currentTopic;
+        if ($( sessionId ).find( currentTopic ).length > 0)
+        {
+          updatedTopics += "<option>" + topics[i] + "</option>";
+        }
+      }
+      document.getElementById("veinstopics").innerHTML = "<option>All topics</topics>" + updatedTopics;
+    }
+    else if (selectedVeinsSpeaker != "All speakers")
+    {
+      var updatedTopics = "";
+      for (i = 0; i < topics.length; i++)
+      {
+        var sessionId = nameToId(input);
+        var sessionId = "#" + sessionId;
+        var currentTopic = topics[i].toUpperCase();
+        currentTopic = nameToId(currentTopic);
+        currentTopic = "#" + currentTopic;
+        if ($( sessionId ).find( currentTopic ).length > 0)
+        {
+          var speakerId = nameToId(selectedVeinsSpeaker);
+          speakerId = "#" + speakerId;
+          if ($( currentTopic ).find( speakerId ).length > 0)
+          {
+            updatedTopics += "<option>" + topics[i] + "</option>";
+          }
+        }
+      }
+      document.getElementById("veinstopics").innerHTML = "<option>All topics</topics>" + updatedTopics;
+    }
+
+    //Create selected session ID
+    var sessionId = nameToId(input);
+    var showInput = "#" + sessionId;
+    sessionId = "#" + sessionId + "header";
+    $( ".session" ).not( sessionId ).css( "display", "none" );
+    $( ".panel-collapse" ).filter( showInput ).addClass( "show" );
+    $( ".panel-collapse" ).not( showInput ).removeClass( "show" );
+    //iterate through speaker list
+    var updatedSpeakers = "";
+    for (i = 0; i < speakers.length; i++)
+    {
+      var speaker = speakers[i];
+      var speakerId = nameToId(speaker);
+      speakerId = "#" + speakerId;
+      if ($( showInput ).find( speakerId ).length > 0 ) {
+        if (selectedVeinsSpeaker == speaker) {
+          updatedSpeakers += "<option selected='true'>" + speaker + "</option>";
+        }
+        else {
+          updatedSpeakers += "<option>" + speaker + "</option>";
+        }
+      }
+      //console.log($( "#Aortic_Armageddon" ).find( "#Daniel_Clair" ).length);
+    }
+
+    //Update speaker list
+    document.getElementById("veinsspeakers").innerHTML = updatedSpeakers;
+    var select = $('#veinsspeakers');
+    select.html(select.find('option').sort(function(x, y) {
+      // to change to descending order switch "<" for ">"
+      return $(x).text() > $(y).text() ? 1 : -1;
+    }));
+
+    var optionValues =[];
+    $('#veinsspeakers option').each(function(){
+      if($.inArray(this.innerHTML, optionValues) >-1){
+        $(this).remove()
+      }else{
+        optionValues.push(this.value);
+      }
+    });
+    document.getElementById("veinsspeakers").innerHTML = "<option>All speakers</option>" + document.getElementById("veinsspeakers").innerHTML;
+  }
+  else {
+    //Reset topics
+    document.getElementById("veinsspeakers").disabled = false;
+    document.getElementById("veinstopics").disabled = true;
+    var updatedTopics = "<option>All topics</option>";
+    for (i = 0; i < topics.length; i++)
+    {
+      var currentTopic = topics[i].toUpperCase();
+      currentTopic = nameToId(currentTopic);
+      currentTopic = "#" + currentTopic + "header";
+      $( currentTopic ).css( "display", "block" );
+      updatedTopics += "<option>" + topics[i] + "</option>";
+    }
+    document.getElementById("veinstopics").innerHTML = updatedTopics;
+
+    //If all speakers
+    if (selectedVeinsSpeaker == "All speakers")
+    {
+      var updatedSessions = "<option>All sessions</option>";
+      for (i = 0; i < sessions.length; i++)
+      {
+        updatedSessions += "<option>" + sessions[i] + "</option>";
+      }
+      document.getElementById("veinssessions").innerHTML = updatedSessions;
+
+      var updatedSpeakers = "";
+      for (i = 0; i < speakers.length; i++)
+      {
+        updatedSpeakers += "<option>" + speakers[i] + "</option>";
+      }
+
+      //Update speaker list
+      document.getElementById("veinsspeakers").innerHTML = updatedSpeakers;
+      var select = $('#veinsspeakers');
+      select.html(select.find('option').sort(function(x, y) {
+        // to change to descending order switch "<" for ">"
+        return $(x).text() > $(y).text() ? 1 : -1;
+      }));
+
+      var optionValues =[];
+      $('#veinsspeakers option').each(function(){
+        if($.inArray(this.innerHTML, optionValues) >-1){
+          $(this).remove()
+        }else{
+          optionValues.push(this.value);
+        }
+      });
+      document.getElementById("veinsspeakers").innerHTML = "<option>All speakers</option>" + document.getElementById("veinsspeakers").innerHTML;
+    }
+    else
+    {
+      //Set session list to be only those that match current speaker
+      var speakerName = nameToId(selectedVeinsSpeaker);
+      speakerName = "#" + speakerName;
+      var updatedSessions = "<option>All sessions</option>";
+      for (i = 0; i < sessions.length; i++)
+      {
+        var sessionId = nameToId(sessions[i]);
+        var currentSession = "#" + sessionId;
+        if ($( currentSession ).find( speakerName ).length == 0) {
+          var currentSessionHeader = currentSession + "header";
+          $( currentSessionHeader ).css( "display", "none" );
+        }
+      }
+
+      //Make sure current topics don't include speakers it shouldn't
+      for (i = 0; i < topics.length; i++)
+      {
+        var currentTopic = topics[i].toUpperCase();
+        currentTopic = nameToId(currentTopic);
+        currentTopic = "#" + currentTopic;
+        var speakerId = nameToId(selectedVeinsSpeaker);
+        speakerId = "#" + speakerId;
+        if ($( currentTopic ).find( speakerId ).length == 0)
+        {
+          currentTopic = currentTopic + "header";
+          $( currentTopic ).css('display', 'none');
+        }
+      }
+
+      //Update speaker list to include all speakers
+      var updatedSpeakers = "";
+      for (i = 0; i < speakers.length; i++)
+      {
+        if (selectedVeinsSpeaker == speakers[i])
+        {
+          updatedSpeakers += "<option selected='true'>" + speakers[i] + "</option>";
+        }
+        else {
+          updatedSpeakers += "<option>" + speakers[i] + "</option>";
+        }
+      }
+
+      //Update speaker list
+      document.getElementById("veinsspeakers").innerHTML = updatedSpeakers;
+      var select = $('#veinsspeakers');
+      select.html(select.find('option').sort(function(x, y) {
+        // to change to descending order switch "<" for ">"
+        return $(x).text() > $(y).text() ? 1 : -1;
+      }));
+
+      var optionValues =[];
+      $('#veinsspeakers option').each(function(){
+        if($.inArray(this.innerHTML, optionValues) >-1){
+          $(this).remove()
+        }else{
+          optionValues.push(this.value);
+        }
+      });
+      document.getElementById("veinsspeakers").innerHTML = "<option>All speakers</option>" + document.getElementById("veinsspeakers").innerHTML;
+
+      //Update topics in case some need to reappear
+
+    }
+  }
+}
+
+function topicFilterVeins(input) {
+  //If statement for viva or veins
+  var selectedVeinsSpeaker = document.getElementById("veinsspeakers").value;
+  var selectedVeinsSession = document.getElementById("veinssessions").value;
+  $( ".topic" ).filter( ".panel-title" ).css( "display", "block" );
+  if (input != "All topics")
+  {
+    document.getElementById("veinsspeakers").disabled = true;
+    input = input.toUpperCase();
+    input = nameToId(input);
+    var showInput = "#" + input;
+    input = "#" + input + "header";
+    $( ".topic" ).not( input ).css( "display", "none" );
+    $( ".panel-collapse" ).filter( showInput ).addClass( "show" );
+  }
+  else
+  {
+    document.getElementById("veinsspeakers").disabled = false;
+    if (selectedVeinsSpeaker != "All speakers")
+    {
+      for (i = 0; i < topics.length; i++)
+      {
+        var sessionId = nameToId(selectedVeinsSession);
+        var sessionId = "#" + sessionId;
+        var currentTopic = topics[i].toUpperCase();
+        currentTopic = nameToId(currentTopic);
+        currentTopic = "#" + currentTopic;
+        if ($( sessionId ).find( currentTopic ).length > 0)
+        {
+          var speakerId = nameToId(selectedVeinsSpeaker);
+          speakerId = "#" + speakerId;
+          if ($( currentTopic ).find( speakerId ).length == 0)
+          {
+            currentTopic = currentTopic + "header";
+            $( currentTopic ).css('display', 'none');
+          }
+        }
+      }
+    }
+  }
+}
+
+function topicFilter(input) {
+  //If statement for viva or veins
+  var selectedVivaSpeaker = document.getElementById("vivaspeakers").value;
+  var selectedVivaSession = document.getElementById("vivasessions").value;
+  $( ".topic" ).filter( ".panel-title" ).css( "display", "block" );
+  if (input != "All topics")
+  {
+    document.getElementById("vivaspeakers").disabled = true;
+    input = input.toUpperCase();
+    input = nameToId(input);
+    var showInput = "#" + input;
+    input = "#" + input + "header";
+    $( ".topic" ).not( input ).css( "display", "none" );
+    $( ".panel-collapse" ).filter( showInput ).addClass( "show" );
+  }
+  else
+  {
+    document.getElementById("vivaspeakers").disabled = false;
+    if (selectedVivaSpeaker != "All speakers")
+    {
+      for (i = 0; i < topics.length; i++)
+      {
+        var sessionId = nameToId(selectedVivaSession);
+        var sessionId = "#" + sessionId;
+        var currentTopic = topics[i].toUpperCase();
+        currentTopic = nameToId(currentTopic);
+        currentTopic = "#" + currentTopic;
+        if ($( sessionId ).find( currentTopic ).length > 0)
+        {
+          var speakerId = nameToId(selectedVivaSpeaker);
+          speakerId = "#" + speakerId;
+          if ($( currentTopic ).find( speakerId ).length == 0)
+          {
+            currentTopic = currentTopic + "header";
+            $( currentTopic ).css('display', 'none');
+          }
+        }
+      }
+    }
+  }
+}
+
+function uppercase(str)
+{
+  str = str.toLowerCase();
+  var array1 = str.split(' ');
+  var newarray1 = [];
+
+  for(var x = 0; x < array1.length; x++){
+      newarray1.push(array1[x].charAt(0).toUpperCase()+array1[x].slice(1));
+  }
+  return newarray1.join(' ');
+}
+
+function readCookie(name) {
+  var nameEQ = name + "=";
+  var ca = document.cookie.split(';');
+  for(var i=0;i < ca.length;i++) {
+      var c = ca[i];
+      while (c.charAt(0)==' ') c = c.substring(1,c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+  }
+  return null;
+}
+
+function printDiv() {
+  var veinsActive = $('#nav-viens-tab').hasClass("active");
+  var vivaActive = $('#nav-viva18-tab').hasClass("active");
+  if (vivaActive)
+  {
+    var printContents = document.getElementById("printableArea1").innerHTML;
+    var originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+
+    window.print();
+
+    document.body.innerHTML = originalContents;
+  }
+  if (veinsActive) {
+    var printContents = document.getElementById("printableArea2").innerHTML;
+    var originalContents = document.body.innerHTML;
+
+    document.body.innerHTML = printContents;
+
+    window.print();
+
+    document.body.innerHTML = originalContents;
+  }
+}
+</script>
+{% endblock %}

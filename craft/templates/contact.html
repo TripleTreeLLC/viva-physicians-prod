@@ -1,0 +1,87 @@
+{#
+ # Contact Us template
+ # ---------------
+ #
+ # When this template gets loaded, it will be because someone has accessed
+ # http://yoursite.com/ (without any URI). Craft checks to see if you have
+ # a Single section set to be the Homepage (as you do, by default), and
+ # loads the section’s Template (this file). A special ‘entry’ variable
+ # will already be set for you, assigned to the Homepage entry.
+ #
+ # It's worth noting that even if you didn't have a Homepage Single section,
+ # as long as this template remains at craft/templates/index.html, it
+ # would still be the one to get loaded when accessing http://yoursite.com/,
+ # albeit without an ‘entry’ variable already set for you.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layout.html" %}
+
+{% block pageTitle %}Contact Us{% endblock %}
+
+{% block main %}
+
+
+    <header id="header">
+        <div class="container-fluid contact-us-header text-light reformat-header">
+            <div class="row fixrow">
+                <div class="col fixcol">
+                    <div class="container py-md-6 py-5 py-lg-8 shorten-banners">
+                        <h1 class="display-4 text-uppercase">Contact Us</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="main">
+        <div class="container">
+            <div class="row my-6 matchwidth">
+                <div class="col muted-paragraph bg-gray p-md-5 ">
+                    <div class="row">
+                        <div class="col-md-6 p-3">
+                            <h4 class="text-secondary m-0 w-semibold">VIVA Physicians</h4>
+                            {{entry.vivaPhysiciansContactInfo}}
+                        </div>
+                        <div class="co-md-6 px-3 contactCSS">
+                            <!--<p class="font-sm text-secondary m-0 w-semibold">Grant Support and Satellite Symposia, Christopher Ebbe</p>
+                            <p class="font-sm m-0"><a href="mailto:cebbe@vivaphysicians.org">cebbe@vivaphysicians.org</a></p>
+                            <p class="font-sm"><a href="tel:312-366-8514">312-366-8514</a></p>
+
+                            <p class="font-sm text-secondary m-0 w-semibold">Faculty and Education, Rachel DeLuna</p>
+                            <p class="font-sm m-0"><a href="mailto:faculty@vivaphysicians.org">faculty@vivaphysicians.org</a></p>
+                            <p class="font-sm"><a href="tel:408-513-3246">408-513-3246</a></p>
+
+                            <p class="font-sm text-secondary m-0 w-semibold">Exhibits, Housing, and Meeting Logistics, Karen Havstad</p>
+                            <p class="font-sm m-0"><a href="mailto:logistics@vivaphysicians.org">logistics@vivaphysicians.org</a></p>
+                            <p class="font-sm"><a href="tel:408-513-3249">408-513-3249</a></p>
+
+                            <p class="font-sm text-secondary m-0 w-semibold">Marketing, Tiffany Chou</p>
+                            <p class="font-sm m-0"><a href="mailto:marketing@vivaphysicians.org">marketing@vivaphysicians.org</a></p>
+                            <p class="font-sm"><a href="tel:408-513-3248">408-513-3248</a></p>
+
+                            <p class="font-sm text-secondary m-0 w-semibold">Registration, IT and Support, Tony Jakovcevic</p>
+                            <p class="font-sm m-0"><a href="mailto:tony@vivaphysicians.org">tony@vivaphysicians.org</a></p>
+                            <p class="font-sm"><a href="tel:408-513-3242">408-513-3242</a></p>
+
+                            <p class="font-sm text-secondary m-0 w-semibold">Executive Director, Rebecca Hall</p>
+                            <p class="font-sm"><a href="mailto:rhall@vivaphysicians.org">rhall@vivaphysicians.org</a></p>
+                            -->
+                            {{entry.vivaSupportStaffContact}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+   
+
+
+ {% endblock %}
+ 
+ 

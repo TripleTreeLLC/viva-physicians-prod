@@ -1,0 +1,75 @@
+{#
+ # Individual news article template
+ #}
+
+{% extends "_layout.html" %}    
+
+{% set articleID = craft.request.getQuery("id") %}
+{% set entry = craft.entries.id(articleID).first() %}
+
+{% block pageTitle %}VIVA News - {{ entry.title }}{% endblock %}
+
+{% block main %}
+
+    <section id="intro">
+        <div class="container-fluid">
+            <div class="container centered matchwidth">
+                <div class="row py-6">
+                    <div class="col">
+                        <div class="container news-container">
+                            {% set doc = entry.newsFeedImage.first() %}
+                            {% if doc %}
+                                <img src="{{doc.url}}" class="news-article-thumb">
+                            {% endif %}
+
+
+                            <h4 class="text-danger font-italic" style="margin-top:2em;">{{entry.postDate|date('F j, Y')}}</h4>
+                            <h2>{{ entry.title }}</h2>
+                            <p class="font-lg">
+                               {{ entry.body }}
+                            </p>
+
+
+                            <div class="row btn-container">
+                                <div class="col">
+                                    <span style="padding-top:0.92em;">
+                                        <a href="/news">
+                                            <div class="">
+                                                <i class="fa fa-angle-left fa-2x pt-3 text-secondary more-arrow" aria-hidden="true"></i>
+                                                <span class="backspan">Back to News</span>
+                                            </div>
+                                        </a>
+
+
+                                    </span>
+                                </div>
+
+                                <div class="news-share-container col">
+                                    <div class="sharecontainer">
+                                        <span class="sharespan">Share: </span>
+
+                                        <div class="social-media-icons pt-4 news-social">
+                                            <ul class="list-inline news-social">
+                                                <a href="//twitter.com/vivaphysicians" target="_blank"><i class="text-light fa fa-twitter fa-2x p-2"></i></a>
+                                                <a href="//www.linkedin.com/company/3620553/" target="_blank"><i class="text-light fa fa-linkedin fa-2x p-2"></i></a>
+                                                <a href="//www.instagram.com/vivaphysicians/" target="_blank"><i class="text-light fa fa-instagram fa-2x p-2"></i></a>
+                                                <a href="//www.facebook.com/vivaphysicians/" target="_blank"><i class="text-light fa fa-facebook fa-2x p-2"></i></a>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+ 
+ {% endblock %}
+
+ 
+ 

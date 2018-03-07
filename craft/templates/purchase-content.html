@@ -1,0 +1,103 @@
+{#
+ # Purchase Content template
+ # ---------------
+ #
+ # When this template gets loaded, it will be because someone has accessed
+ # http://yoursite.com/ (without any URI). Craft checks to see if you have
+ # a Single section set to be the Homepage (as you do, by default), and
+ # loads the section’s Template (this file). A special ‘entry’ variable
+ # will already be set for you, assigned to the Homepage entry.
+ #
+ # It's worth noting that even if you didn't have a Homepage Single section,
+ # as long as this template remains at craft/templates/index.html, it
+ # would still be the one to get loaded when accessing http://yoursite.com/,
+ # albeit without an ‘entry’ variable already set for you.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layout.html" %}
+
+{% block pageTitle %}Purchase Content{% endblock %}
+
+{% block main %}
+
+    <header id="header">
+        <div class="container-fluid purchase-content-header text-light reformat-header">
+            <div class="row fixrow pc-adjuster">
+                <div class="col fixcol">
+                    <div class="container py-md-6 py-5 py-lg-8 shorten-banners">
+                        <h1 class="display-4 text-uppercase">Purchase Content</h1>
+                        <p class="lead mr-md-10">{{entry.purchaseContentBannerBodyCopy}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="intro">
+        <div class="container-fluid">
+            <div class="container matchwidth">
+                <div class="row pb-50">
+                    <div class="col-md-4 program-image pt-50">
+                        <img class="img-fluid" src="/images/purchase-content.jpg"/>
+                    </div>
+                    <div class="col-md-8 pt-50 pl-md-40">
+                        <h2>
+                            Purchase Past VIVA Content
+                        </h2>
+
+                        {{entry.purchasePastVivaContentBodyCopy}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="study-guide" class="bg-gray">
+        <div class="container">
+            <div class="row pt-0 pb-5">
+                <div class="col-md-6 pt-md-6 mb-5 py-6 purchase-rw">
+                    <h2>Study Guide</h2>
+
+                    {{entry.studyGuideLeftSideBodyCopy}}
+
+                    <a href="//www.amazon.com/dp/0615696449/ref=cm_sw_su_dp" class="angle-link">Purchase</a>
+                </div>
+                <div class="col-md-6 pt-md-6">
+                    <img class="img-fluid" src="/images/study-guide.jpeg">
+                </div>
+            </div>
+            <div class="row pb-0">
+                <div class="col-md-6 d-none d-md-inline mt-5">
+                    <img class="img-fluid" src="/images/study-guide2.jpg">
+                </div>
+                <div class="col-md-6 pb-6 mt-5">
+                    {{entry.studyGuideRightSideBodyCopy}}
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="viva-app">
+        <div class="container">
+            <div class="row pt-5">
+                <div class="col-md pt-md-5 mt-md-5">
+                    <h2>Virtual Viva App</h2>
+                    <p>
+                        {{virtualViva.virtualVivaBannerBodyCopy}}
+                    </p>
+                    <a href="#" class="angle-link">Log In</a>
+                </div>
+                <div class="col-md pt-5">
+                    <img class="img-fluid" src="./images/viva-app.png"/>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+ {% endblock %}

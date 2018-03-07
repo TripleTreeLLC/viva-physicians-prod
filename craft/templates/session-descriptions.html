@@ -1,0 +1,126 @@
+{#
+ # Session Descriptions template
+ # ---------------
+ #
+ # When this template gets loaded, it will be because someone has accessed
+ # http://yoursite.com/ (without any URI). Craft checks to see if you have
+ # a Single section set to be the Homepage (as you do, by default), and
+ # loads the section’s Template (this file). A special ‘entry’ variable
+ # will already be set for you, assigned to the Homepage entry.
+ #
+ # It's worth noting that even if you didn't have a Homepage Single section,
+ # as long as this template remains at craft/templates/index.html, it
+ # would still be the one to get loaded when accessing http://yoursite.com/,
+ # albeit without an ‘entry’ variable already set for you.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layout.html" %}
+
+{% block pageTitle %}Session Descriptions{% endblock %}
+
+{% block main %}
+
+    <header id="header">
+        <div class="container-fluid descriptions-header text-light reformat-header">
+            <div class="row fixrow pc-adjuster">
+                <div class="col fixcol">
+                    <div class="container py-md-6 py-5 py-lg-8 shorten-banners">
+                        <h1 class="display-4 text-uppercase">Session Descriptions</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    {% for session in entry.featuredSpecialSession %}   
+
+        <section id="intro">
+            <div class="container-fluid">
+                <div class="row py-4 bg-half-gray">
+                    <div class="col">
+                        <div class="container matchwidth">
+                        <h2 class="pt-5">{{session.sessionName}}</h2>
+
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <div id="player"></div>
+                                <div id="play-button-overlay" class="embed-responsive-item session-descriptions-image-overlay">
+                                    <span class="helper"></span>
+                                    <img src="images/viva_playbutton.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    {% endfor %}
+
+
+    <section id="main" class="bg-gray">
+        <div class="container py-5 adjust-spacing-sd">
+
+            {% for session in entry.featuredSpecialSession %}  
+                <div class="row pb-5 my-5 d-flex align-items-center dark-border">
+                    <div class="col-md-4 pb-md-0 pb-5">
+                        {% set doc = session.logo.first() %}
+                        {% if doc %}
+                            <img class="img-fluid" src="{{doc.url}}">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                        <!-- <h2>Global Theater</h2> -->
+                        <p>{{session.sessionDescription}}</p>
+                        
+                    </div>
+                </div>
+
+            {% endfor %}
+
+            {% for session in entry.specialSessionDescriptions %}
+                <div class="row pb-5 my-5 d-flex align-items-center dark-border">
+                    <div class="col-md-4 pb-md-0 pb-5">
+
+                        {% set doc = session.logo.first() %}
+                        {% if doc %}
+                            <img class="img-fluid" src="{{doc.url}}">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                        <h2>{{session.sessionName}}</h2>
+                        <p>{{session.sessionDescription}}</p>
+                        <a href="#" class="angle-link video-btn" data-toggle="modal" data-src="{{session.videoRecapLink}}" data-target="#myModal">Video Recap</a>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+
+            
+
+            
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-body">
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>        
+                    <!-- 16:9 aspect ratio -->
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="" id="video" allowFullScreen='allowFullScreen'  allowscriptaccess="always"></iframe>
+                    </div>
+                </div>  
+            </div>
+
+        </div>
+    </section>
+
+
+ 
+ {% endblock %}
+ 

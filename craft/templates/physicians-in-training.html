@@ -1,0 +1,125 @@
+{#
+ # Physicians In Training template
+ # ---------------
+ #
+ # When this template gets loaded, it will be because someone has accessed
+ # http://yoursite.com/ (without any URI). Craft checks to see if you have
+ # a Single section set to be the Homepage (as you do, by default), and
+ # loads the section’s Template (this file). A special ‘entry’ variable
+ # will already be set for you, assigned to the Homepage entry.
+ #
+ # It's worth noting that even if you didn't have a Homepage Single section,
+ # as long as this template remains at craft/templates/index.html, it
+ # would still be the one to get loaded when accessing http://yoursite.com/,
+ # albeit without an ‘entry’ variable already set for you.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layout.html" %}
+
+{% block pageTitle %}Physicians In Training{% endblock %}
+
+{% block main %}
+
+    <header id="header">
+        <div class="container-fluid in-training-header text-light reformat-header">
+            <div class="row fixrow pc-adjuster">
+                <div class="col fixcol">
+                    <div class="container py-md-6 py-5 py-lg-8 shorten-banners">
+                        <h1 class="display-4 text-uppercase">Physicians-in-Training</h1>
+                        <p class="lead mr-md-10">{{entry.pitBannerCopy}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="intro">
+        <div class="container-fluid">
+            <div class="container matchwidth">
+                <div class="row pb-50">
+                    <div class="col-md-4 program-image pt-50">
+                        <img class="img-fluid" src="/images/fellows.jpg"/>
+                    </div>
+                    <div class="col-md-8 pt-50 pl-md-40">
+                        <h2>
+                            Fellows and Residents Sessions
+                        </h2>
+                        {{entry.fellowsAndResidentsBodyCopy}}
+                        <a href="/agenda" class="angle-link">See Agenda</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="learning-objectives" class="bg-gray">
+        <div class="container">
+            <div class="row py-5">
+                <div class="col">
+                    <img src="/images/face-off.png" class="img-fluid pb-40">
+                    <h2>Face-Off Competition Eligibility</h2>
+
+                    {{entry.faceOffCompetitionEligibilityBodyCopy}}
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="scholarships">
+        <div class="container">
+            <div class="row pb-6">
+                <div class="col-md-6 pt-50">
+                    <h2>Registration and Scholarships</h2>
+                    <p><strong>Complete this verification letter and upload it when registering for VIVA or The VEINS. Be sure to select U.S. Physicians-in-Training when registering.</strong></p>
+
+                    <a target="_blank" class="angle-link pb-5"
+                    {% set doc = entry.verificationLetterLink.first() %}
+                    {% if doc %}
+                    {{ doc.url }}
+                      href="{{ doc.url }}"
+                    {% endif %}>Verification Letter
+                    </a>
+
+
+
+
+
+                    {{entry.registrationAndScholarshipsBodyCopy}}
+                </div>
+                <div class="col-md-6 pl-md-5 pt-50">
+                        <img class="img-fluid" src="/images/scholarship.jpg"/>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="claim credits" class="bg-gray">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 program-image pt-50 pb-50">
+                        <img class="img-fluid w-100" src="/images/program-overview.jpg"/>
+                    </div>
+                    <div class="col-md-8 pt-50 pl-md-5 pb-8">
+                        <h2>
+                            Physicians-in-Training Reception
+                        </h2>
+                        <p>
+                            {{entry.pitReceptionBodyCopy}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+ {% endblock %}

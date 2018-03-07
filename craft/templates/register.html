@@ -1,0 +1,306 @@
+{#
+ # Register template
+ # ---------------
+ #
+ # When this template gets loaded, it will be because someone has accessed
+ # http://yoursite.com/ (without any URI). Craft checks to see if you have
+ # a Single section set to be the Homepage (as you do, by default), and
+ # loads the section’s Template (this file). A special ‘entry’ variable
+ # will already be set for you, assigned to the Homepage entry.
+ #
+ # It's worth noting that even if you didn't have a Homepage Single section,
+ # as long as this template remains at craft/templates/index.html, it
+ # would still be the one to get loaded when accessing http://yoursite.com/,
+ # albeit without an ‘entry’ variable already set for you.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layout.html" %}
+
+{% block pageTitle %}Register{% endblock %}
+
+{% block main %}
+
+    <header id="header">
+        <div class="container-fluid register-header text-light reformat-header">
+            <div class="row fixrow pc-adjuster">
+                <div class="col fixcol">
+                    <div class="container py-md-6 py-5 py-lg-8 shorten-banners">
+                        <h1 class="display-4 text-uppercase">Register</h1>
+                        <p class="lead">Space is limited; register today! With innovative features, a dynamic faculty, and comprehensive courses, you won’t want to miss VIVA 2018!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="registration">
+        <div class="container matchwidth">
+            <div class="row pb-4 pt-6">
+                <div class="col">
+                    <div class="clearfix pb-4">
+                        <a class="btn btn-primary float-right" href="#" role="button" onClick="ga('send', 'event', 'Register', 'Register Page click','Registration table')">Register Now</a>
+                        <h2 class="mb-0">Registration</h2>
+                    </div>
+
+                    <div class="panel-group border border-danger" id="reg-accordion">
+
+                            <div class="panel">
+                                <div class="panel-heading p-4 bg-light">
+                                    <h4 class="panel-title m-0">
+                                        <a class="accordion-toggle text-secondary text-uppercase" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                            VIVA Attendees
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse show">
+
+                                    <div class="panel-body table-responsive pl-4">
+                                        <table class="table table-bordered text-center m-0">
+                                            <tbody class="registration font-sm">
+                                                <tr class="text-secondary">
+                                                <td class="border-left-0 border-top-0 text-left">
+                                                    <img src="/images/viva-18.svg" class="img-fluid pt-1"/>
+                                                </td>
+                                                <td class="border-top-0 text-uppercase head">
+                                                    <strong>Early Bird</strong> <br>{{pricingTables.earlyBirdDate}}
+                                                </td>
+                                                <td class="border-top-0 text-uppercase head">
+                                                    <strong>Prime</strong> <br>{{pricingTables.primeDates}}
+                                                </td>
+                                                <td class="border-right-0 border-top-0 text-uppercase head">
+                                                    <strong>Standard</strong> <br>{{pricingTables.standardTicketsDate}}
+                                                </td>
+                                                <td class="border-right-0 border-top-0 text-uppercase head">
+                                                    <strong>Requirements</strong> <br>(Needed during the registration process)
+                                                </td>
+                                                </tr>
+                                                <tr class>
+                                                <td class="border-left-0 text-left text-secondary">Physicians (US & International)</td>
+                                                <td class="font-lg">$1,295</td>
+                                                <td class="bg-lighter font-lg">$1,445</td>
+                                                <td class="border-right-0 font-lg">$1,545</td>
+                                                <td class="border-right-0 font-sm">No requirements</td>
+                                                </tr>
+                                                <tr>
+                                                <td class="border-left-0 text-left text-secondary">Active Duty Military</td>
+                                                <td class="font-lg">$50</td>
+                                                <td class="bg-lighter font-lg">$100</td>
+                                                <td class="border-right-0 font-lg">$100</td>
+                                                <td class="border-right-0 font-sm">Upload Military ID / Active Duty Status</td>
+                                                </tr>
+                                                <tr>
+                                                <td class="border-left-0 text-left text-secondary">Nurses / Techs / HCPs</td>
+                                                <td class="font-lg">$795</td>
+                                                <td class="bg-lighter font-lg">$845</td>
+                                                <td class="border-right-0 font-lg">$845</td>
+                                                <td class="border-right-0 font-sm">License / NPI #</td>
+                                                </tr>
+                                                <tr>
+                                                <td class="border-left-0 border-bottom-0 text-left text-secondary">Industry Professionals</td>
+                                                <td class="border-bottom-0 font-lg">$1,095</td>
+                                                <td class="bg-lighter border-bottom-0 font-lg">$1,295</td>
+                                                <td class="border-right-0 border-bottom-0 font-lg">$1,545</td>
+                                                <td class="border-right-0 border-bottom-0 font-sm">No requirements</td>
+
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel">
+                                <div class="panel-heading p-4 bg-light">
+                                    <h4 class="panel-title m-0">
+                                        <a class="accordion-toggle text-secondary" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                            <span class="text-uppercase">Face-Off Competition</span> <br> <small class="pl-4 font-sm">(Open to Physician-in-Training and International Physicians only)</small>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse">
+                                    <div class="panel-body table-responsive pl-4">
+                                        <table class="table table-bordered text-center m-0">
+                                                <tbody class="registration font-sm">
+                                                    <tr class="text-secondary">
+                                                    <td class="border-left-0 border-top-0 text-left">
+                                                        <img src="/images/face-off.png" class="img-fluid pt-1"/>
+                                                    </td>
+                                                    <td class="border-top-0 text-uppercase head">
+                                                        <strong>Early Bird</strong> <br>{{pricingTables.earlyBirdDate}}
+                                                    </td>
+                                                    <td class="border-top-0 text-uppercase head">
+                                                        <strong>Prime</strong> <br>{{pricingTables.primeDates}}
+                                                    </td>
+                                                    <td class="border-right-0 border-top-0 text-uppercase head">
+                                                        <strong>Standard</strong> <br>{{pricingTables.standardTicketsDate}}
+                                                    </td>
+                                                    <td class="border-right-0 border-top-0 text-uppercase head">
+                                                        <strong>Requirements</strong> <br>(Needed during the registration process)
+                                                    </td>
+                                                    </tr>
+                                                    <tr class>
+                                                    <td class="border-left-0 text-left text-secondary">US Physicians-in-Training</td>
+                                                    <td class="font-lg">FREE</td>
+                                                    <td class="bg-lighter font-lg">FREE</td>
+                                                    <td class="border-right-0 font-sm">Register as physician</td>
+                                                    <td class="border-right-0 font-sm">Fellowship Verification Letter</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td class="border-left-0 text-left text-secondary">International Physicians</td>
+                                                    <td class="font-lg">$995</td>
+                                                    <td class="bg-lighter font-lg">$995</td>
+                                                    <td class="border-right-0 font-sm">Register as physician</td>
+                                                    <td class="border-right-0 font-sm">No requirements</td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel">
+                                <div class="panel-heading p-4 bg-light">
+                                    <h4 class="panel-title m-0">
+                                        <a class="accordion-toggle text-secondary" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                            <span class="text-uppercase">Attend Virtually</span> <br> <small class="pl-4 font-sm">(Includes access to all content via app)</small>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse">
+                                    <div class="panel-body table-responsive pl-4">
+                                        <table class="table table-bordered text-center m-0">
+                                                <tbody class="registration font-sm">
+                                                    <tr class="text-secondary">
+                                                    <td class="border-left-0 border-top-0 text-left">
+                                                        <img src="/images/virtual-viva.png" class="img-fluid pt-1"/>
+                                                    </td>
+                                                    <td class="border-top-0 text-uppercase head">
+                                                        <strong>Early Bird</strong> <br>{{pricingTables.earlyBirdDate}}
+                                                    </td>
+                                                    <td class="border-top-0 text-uppercase head">
+                                                        <strong>Prime</strong> <br>{{pricingTables.primeDates}}
+                                                    </td>
+                                                    <td class="border-right-0 border-top-0 text-uppercase head">
+                                                        <strong>Standard</strong> <br>{{pricingTables.standardTicketsDate}}
+                                                    </td>
+                                                    <td class="border-right-0 border-top-0 text-uppercase head">
+                                                        <strong>Requirements</strong> <br>(Needed during the registration process)
+                                                    </td>
+                                                    </tr>
+                                                    <tr class>
+                                                    <td class="border-left-0 text-left text-secondary">Active Duty Military</td>
+                                                    <td class="font-lg">FREE</td>
+                                                    <td class="bg-lighter font-lg">FREE</td>
+                                                    <td class="border-right-0 font-lg">FREE</td>
+                                                    <td class="border-right-0 font-sm">Upload Military ID / Active Duty Status</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td class="border-left-0 text-left text-secondary">International Physicians</td>
+                                                    <td class="font-lg">$395</td>
+                                                    <td class="bg-lighter font-lg">$395</td>
+                                                    <td class="border-right-0 font-lg">$395</td>
+                                                    <td class="border-right-0 font-sm">Cancellations not accepted</td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel">
+                                <div class="panel-heading p-4 bg-light">
+                                    <h4 class="panel-title m-0">
+                                        <a class="accordion-toggle text-secondary text-uppercase" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                            VEINS Attendees
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseFour" class="panel-collapse collapse">
+
+                                    <div class="panel-body table-responsive pl-4">
+                                        <table class="table table-bordered text-center m-0">
+                                            <tbody class="registration font-sm">
+                                                <tr class="text-secondary">
+                                                <td class="border-left-0 border-top-0 text-left">
+                                                    <img src="/images/veins-at-viva-01.svg" class="img-fluid pt-2"/>
+                                                </td>
+                                                <td class="border-top-0 text-uppercase head">
+                                                    <strong>Early Bird</strong> <br>{{pricingTables.earlyBirdDate}}
+                                                </td>
+                                                <td class="border-top-0 text-uppercase head">
+                                                    <strong>Prime</strong> <br>{{pricingTables.primeDates}}
+                                                </td>
+                                                <td class="border-right-0 border-top-0 text-uppercase head">
+                                                    <strong>Standard</strong> <br>{{pricingTables.standardTicketsDate}}
+                                                </td>
+                                                <td class="border-right-0 border-top-0 text-uppercase head">
+                                                    <strong>Requirements</strong> <br>(Needed during the registration process)
+                                                </td>
+                                                </tr>
+                                                <tr class>
+                                                <td class="border-left-0 text-left text-secondary">Physicians (US & International)</td>
+                                                <td class="font-lg">$650</td>
+                                                <td class="bg-lighter font-lg">$700</td>
+                                                <td class="border-right-0 font-lg">$850</td>
+                                                <td class="border-right-0 font-sm">No requirements</td>
+                                                </tr>
+                                                <tr>
+                                                <td class="border-left-0 text-left text-secondary">Active Duty Military</td>
+                                                <td class="font-lg">$50</td>
+                                                <td class="bg-lighter font-lg">$100</td>
+                                                <td class="border-right-0 font-lg">$150</td>
+                                                <td class="border-right-0 font-sm">Upload Military ID / Active Duty Status</td>
+                                                </tr>
+                                                <tr>
+                                                <td class="border-left-0 text-left text-secondary">Nurses / Techs / HCPs</td>
+                                                <td class="font-lg">$500</td>
+                                                <td class="bg-lighter font-lg">$600</td>
+                                                <td class="border-right-0 font-lg">$700</td>
+                                                <td class="border-right-0 font-sm">License / NPI #</td>
+                                                </tr>
+                                                <tr>
+                                                <td class="border-left-0 border-bottom-0 text-left text-secondary">Industry Professionals</td>
+                                                <td class="border-bottom-0 font-lg">$650</td>
+                                                <td class="bg-lighter border-bottom-0 font-lg">$700</td>
+                                                <td class="border-right-0 border-bottom-0 font-lg">$850</td>
+                                                <td class="border-right-0 border-bottom-0 font-sm">No requirements</td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="policy">
+        <div class="container policy-buffer">
+            <div class="row pb-6">
+                <div class="col">
+                    <h2>Cancellation Policy</h2>
+                    <p class="m-0">Cancellations through your online account by Saturday, September 15, 2018 will be accepted less a 15% administrative fee. Refunds are not available within 48 hours of registration to allow for credit card settlement. Once registration is cancelled in your online account, refunds will be settled within 7 days. NO refunds will be given after Saturday, September 15, 2018. Refunds or credits will not be given for failure to attend, late arrival, unattended events, or early departure.</p>
+                    <a href="/disclaimers" class="angle-link">Disclaimers</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+ {% endblock %}

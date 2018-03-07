@@ -1,0 +1,305 @@
+{#
+ # Homepage template
+ # ---------------
+ #
+ # When this template gets loaded, it will be because someone has accessed
+ # http://yoursite.com/ (without any URI). Craft checks to see if you have
+ # a Single section set to be the Homepage (as you do, by default), and
+ # loads the section’s Template (this file). A special ‘entry’ variable
+ # will already be set for you, assigned to the Homepage entry.
+ #
+ # It's worth noting that even if you didn't have a Homepage Single section,
+ # as long as this template remains at craft/templates/index.html, it
+ # would still be the one to get loaded when accessing http://yoursite.com/,
+ # albeit without an ‘entry’ variable already set for you.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layout.html" %}
+
+{% block pageTitle %}Homepage{% endblock %}
+
+{% block main %}
+
+    <header id="home-header">
+        <div class="container-fluid p-0">
+            <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselIndicators" data-slide-to="2"></li>
+                    <li data-target="#carouselIndicators" data-slide-to="3"></li>
+                </ol>
+                <div class="carousel-inner home-carousel text-light">
+                    <div class="carousel-item carousel-item-test active">
+                        <div class="col">
+                            <div class="container py-md-6 py-md-60 py-5 py-lg-60">
+                                <h4 class="text-danger font-italic"><span class="text-uppercase">{{globalYearDates.vivaConferenceDates}}, {{globalYearDates.advertisedYear}}</span> | Wynn Las Vegas</h4>
+                                <h1 class="display-4">VIVA {{globalYearDates.advertisedYear}}</h1>
+                                <p class="lead pr-md-10 pb-2">{{entry.slide1BodyCopy}}</p>
+                                <a class="btn btn-sm btn-primary" id="lm1" href="/viva-programming" onClick="ga('send', 'event', 'Learn more', 'Home click','VIVA')">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item carousel-item-test">
+                        <div class="col">
+                            <div class="container py-md-6 py-md-60 py-5 py-lg-60">
+                                <h4 class="text-danger font-italic"><span class="text-uppercase">{{globalYearDates.veinsDates}}, {{globalYearDates.advertisedYear}}</span> | Wynn Las Vegas</h4>
+                                <h1 class="display-4">The VEINS at VIVA {{globalYearDates.advertisedYear}}</h1>
+                                <p class="lead pr-md-10 pb-2">{{entry.slide2BodyCopy}}</p>
+                                <a class="btn btn-sm btn-primary" id="lm2" href="/veins-programming" onClick="ga('send', 'event', 'Learn more', 'Home click','VEINS')">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item carousel-item-test">
+                        <div class="col">
+                            <div class="container py-md-6 py-md-60 py-5 py-lg-60">
+                                <h4 class="text-danger font-italic"><span class="text-uppercase">{{globalYearDates.nursesTechDates}}, {{globalYearDates.advertisedYear}}</span> | Wynn Las Vegas</h4>
+                                <h1 class="display-4">Nurses + Techs</h1>
+                                <p class="lead pb-2">{{entry.slide3BodyCopy}}</p>
+                                <a class="btn btn-sm btn-primary" id="lm3" href="/nurses-techs" onClick="ga('send', 'event', 'Learn more', 'Home click','Nurses and Techs')">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item carousel-item-test">
+                        <div class="col">
+                            <div class="container ppy-md-60 py-5 py-lg-60">
+                                <h4 class="text-danger font-italic"><span class="text-uppercase">{{globalYearDates.industryDates}}, {{globalYearDates.advertisedYear}}</span> | Wynn Las Vegas</h4>
+                                <h1 class="display-4">Industry</h1>
+                                <p class="lead pr-md-10 pb-2">{{entry.slide4BodyCopy}}</p>
+                                <a class="btn btn-sm btn-primary" id="lm4" href="/industry-partners" onClick="ga('send', 'event', 'Learn more', 'Home click','Industry')">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev carousel-control header-box" href="#carouselIndicators" role="button" data-slide="prev">
+                    <span class="fa fa-long-arrow-left" aria-hidden="true" ></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next carousel-control header-box" href="#carouselIndicators" role="button" data-slide="next">
+                    <span class="fa fa-long-arrow-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <section id="intro">
+        <div class="container-fluid">
+            <div class="row pt-7">
+                <div class="col">
+                    <div class="container">
+                        <h2>Better Patient Care. Better Practitioners.<br> Better Information.</h2>
+                        <p class="font-lg">
+                            {{entry.homepageSubheader}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row bg-half-gray py-6">
+                <div class="col">
+                    <div class="container">
+                        <div class="container embed-responsive embed-responsive-16by9">
+                            <div id="player"></div>
+                            <!--<iframe id="video" class="embed-responsive-item" src="https://www.youtube.com/embed/Ht19Nv_0uZU?rel=0&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe> -->
+                            <div id="play-button-overlay" class="embed-responsive-item index-image-overlay">
+                                <span class="helper"></span>
+                                <img src="images/viva_playbutton.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="bg-gray pb-5">
+        <div class="container-fluid p-0">
+            <div id="carouselControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner carousel-inner-test text-center">
+                    {% for testimonial in entry.testimonials %}
+                        <div class="carousel-item carousel-item-test{% if loop.first %} active{% endif %}">
+                            <div class="col">
+                                <div class="container p-md-5 p-3">
+                                    <p class="font-lg w-light">{{testimonial.quoteText}}</p>
+                                    <hr>
+                                    <p class="font-italic">{{testimonial.quoteSource}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+                <a class="carousel-control-prev text-dark test carousel-control" href="#carouselControls" role="button" data-slide="prev">
+                    <span class="fa fa-long-arrow-left" aria-hidden="true" ></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next text-dark test  carousel-control" href="#carouselControls" role="button" data-slide="next">
+                    <span class="fa fa-long-arrow-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="home-cta">
+        <div class="container-fluid text-center text-light">
+            <div class="row">
+                <div class="col-md-4 p-0">
+                    <div class="p-5 child">
+                        <h2>Viva {{globalYearDates.advertisedYear}}</h2>
+                        <p>
+                            {{entry.leftPurpleTileBody}}
+                        </p>
+
+                        <div class="angle-link-container">
+                            <a href="/viva-programming" class="angle-link text-light">Attend VIVA {{globalYearDates.advertisedYear}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 p-0 attend-veins">
+                    <div class="p-5">
+                        <h2>The Veins at Viva</h2>
+                        <p>
+                            {{entry.centerPurpleTileBody}}
+                        </p>
+
+                        <div class="angle-link-container">
+                            <a href="/veins-programming" class="angle-link text-light">Attend The Veins at VIVA</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 p-0 industry-support">
+                    <div class="p-5">
+                        <h2>Industry</h2>
+                        <p>
+                            {{entry.rightPurpleTileBody}}
+                        </p>
+                        
+                        <div class="angle-link-container">
+                            <a href="/industry-partners" class="angle-link text-light">Exhibit & Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="subscribe" class="bg-red">
+        <div class="container-fluid text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2 pt-5">
+                        <p class="text-white font-lg w-semibold">
+                            Don’t miss a thing! Sign up to get the latest announcements, important dates, and news. 
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 offset-md-3 pb-5">
+                        <form action="https://vivaphysicians.us2.list-manage.com/subscribe/post?u=f282f0f04568989d7eb122966&amp;id=9a4fd6b607" method="post" role="form" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                            <div class="input-group">
+                                <input class="form-control border-0 email subscribe-input" type="text" name="EMAIL" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Subscribe to VIVA'" placeholder="Subscribe to VIVA"  type="email" id="mce-EMAIL" required>
+                                <input type="submit" value="Subscribe" class="btn btn-dark" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="news-feed">
+        <div class="container-fluid p-0">
+            {% for entry in craft.entries.section("news").limit(3) %}
+                <a href="/news-article?id={{ entry.id }}">
+                    <div class="row d-flex list-group-item list-group-item-action border-0 p-0 m-0">
+                        {% set doc = entry.newsFeedImage.first() %}
+                        {% if doc %}
+                            <div class="col-4 p-0 d-none d-md-inline newsThumb" style="background-image: url('{{doc.url}}')"></div>
+                        {% endif %}
+
+                        
+                        <div class="col-8 p-0">
+                            <div class="meta-info">
+                                <p class=" text-secondary w-light font-italic">News & Updates</h5>
+                                <p class=" font-lg">{{ entry.title }}</p>
+                                <small class="text-secondary">{{entry.postDate|date('F j, Y')}}</small>
+                                <br>
+                                <p id="newsBody">
+                                    <i class="fa fa-angle-right fa-2x pt-3 text-secondary more-arrow" aria-hidden="true"></i>
+                                    {{entry.body|striptags|slice(0, 320)}} ...
+                                </p>
+                            </div>
+                        </div>  
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+
+
+
+    <section id="home-sponsors" class="bg-gray">
+        <div class="container-fluid p-0">
+            <div class="row d-flex py-6 border-0 p-0 m-0">
+                <div style="text-align:center;" class="col-md-4 vr">
+                    <h3 style="text-align:center;" class="pb-3 text-secondary w-semibold">Official Publication</h3>
+                    <div class="row">
+                        <div class="col">
+                            <a target="_blank" href="http://evtoday.com/">
+                                <img class="img-fluid w-50" src="/images/endovascular-today.jpg"/>  
+                            </a>
+                        </div>
+                    </div>
+            
+                </div>
+                <div class="col-md-8 pl-md-6 pt-5 pt-md-0" style="padding-left: 5% !important;">
+                        <h3 class="pb-3 text-secondary w-semibold recentering">Endorsements</h3>
+                    <div class="row recentering">
+                        {% for endorsement in entry.endorsements %}
+                            {% set doc = endorsement.endorsementLogo.first() %}
+                            {% if doc %}
+                                <div class="col-md-6">
+                                    <div id="programming-logo">
+                                        <a href="{{endorsement.endorsementLink}}">
+                                            <img class="img-fluid w-50" src="{{doc.url}}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                            
+                        {% endfor %}
+
+
+                    </div>
+ 
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="viva-app">
+        <div class="container">
+            <div class="row pt-5">
+                <div class="col-md pt-md-5 mt-md-5">
+                    <h2>Virtual Viva App</h2>
+                    <p>
+                        Connect. Interact. Engage. Leverage the power of the Virtual VIVA app to submit questions to faculty, review live cases and presentations, and access content from past conferences from the convenience of your mobile device.
+                    </p>
+                    <a href="/viva-app" class="angle-link">Learn More</a>
+                </div>
+                <div class="col-md pt-5">
+                    <img class="img-fluid" src="/images/viva-app.png"/>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ 
+ {% endblock %}
+ 
+ 

@@ -1,0 +1,252 @@
+{#
+ # VIVA Awards template
+ # ---------------
+ #
+ # When this template gets loaded, it will be because someone has accessed
+ # http://yoursite.com/ (without any URI). Craft checks to see if you have
+ # a Single section set to be the Homepage (as you do, by default), and
+ # loads the section’s Template (this file). A special ‘entry’ variable
+ # will already be set for you, assigned to the Homepage entry.
+ #
+ # It's worth noting that even if you didn't have a Homepage Single section,
+ # as long as this template remains at craft/templates/index.html, it
+ # would still be the one to get loaded when accessing http://yoursite.com/,
+ # albeit without an ‘entry’ variable already set for you.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layout.html" %}
+
+{% block pageTitle %}VIVA Awards{% endblock %}
+
+{% block main %}
+
+
+    <header id="header">
+        <div class="container-fluid awards-header text-light reformat-header">
+            <div class="row determine-banner-width">
+                <div class="col fixcol">
+                    <div class="container py-md-6 py-5 py-lg-8 shorten-banners">
+                        <h1 class="display-4 text-uppercase">Awards</h1>
+                        <p class="lead">{{entry.awardsBannerBodyCopy}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <section id="nav-awards">
+        <div class="container matchwidth">
+            <div class="row">
+                <div class="col py-5">
+                    <div class="nav text-uppercase awards-links" id="nav-tab" role="tablist">
+                        <a class="nav-item active mr-5" id="nav-live-tab" data-toggle="tab" href="#nav-live" role="tab" aria-controls="nav-livea" aria-selected="true">Live Award</a>
+                        <a class="nav-item mr-5" id="nav-atlas-tab" data-toggle="tab" href="#nav-atlas" role="tab" aria-controls="nav-atlas" aria-selected="false">Atlas Award</a>
+                        <a class="nav-item mr-5" id="nav-vca-tab" data-toggle="tab" href="#nav-vca" role="tab" aria-controls="nav-vca" aria-selected="false">VCA Award</a>
+                        <a class="nav-item mr-5" id="nav-veins-tab" data-toggle="tab" href="#nav-veins" role="tab" aria-controls="nav-veins" aria-selected="false">Veins Award</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="tab-content" id="nav-tabContent">
+
+        <div class="tab-pane fade show active" id="nav-live" role="tabpanel" aria-labelledby="nav-live-tab">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <div class="container">
+                            <h2 class="mb-3">The Live Award</h2>
+                            
+                            {{entry.liveAwardBodyCopy}}
+
+                            <h4 class="text-secondary py-4">{{entry.liveAwardHonoreeHeader}}</h4>
+                            <div class="row mb-5">
+                                <div class="row mb-5">
+
+                                    {% for recipient in entry.liveAwardRecipient %}
+                                        <div class="col-md-2">
+                                            {% set doc = recipient.headshot.first() %}
+                                            {% if doc %}
+
+                                                <img class="img-fluid pr-2 pb-5" src="{{doc.url}}">
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-md-10">
+                                            <h4 class="text-muted">{{recipient.nameOfRecipient}}</h4>
+                                            <p>
+                                                {{recipient.recipientBodyCopy}}
+                                            </p>
+                                        </div>
+                                    {% endfor %}
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row bg-half-gray pb-5">
+                    <div class="col pb-5">
+                        <div class="container">
+                            <h4 class="text-secondary py-4">Previous LIVE Award Recipents</h4>
+                            <div class="table-responsive pl-4 bg-white border border-danger">
+                                <table class="table table-bordered m-0 text-muted live-award-table">
+                                    <tbody>
+                                        {% for row in entry.liveAwardPreviousWinnersTable %}
+                                            <tr>
+                                            <td class="border-left-0 text-left font-lg">{{row.year}}</td>
+                                            <td class="text-uppercase font-sm pl-4 align-middle">{{row.winnerAndSpecialty}}</td>
+                                            </tr>
+                                        {% endfor %}     
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="tab-pane fade" id="nav-atlas" role="tabpanel" aria-labelledby="nav-atlas-tab">
+ 
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <div class="container">
+                            <h2 class="mb-3">The ATLAS Award</h2>
+                            
+                            {{entry.atlasAwardBodyCopy}}
+
+                            <h4 class="text-secondary py-4">{{entry.atlasAwardHonoreeHeader}}</h4>
+                            <div class="row mb-5">
+
+                                {% for recipient in entry.atlasAwardRecipient %}
+                                    <div class="col-md-2">
+                                        {% set doc = recipient.headshot.first() %}
+                                        {% if doc %}
+
+                                            <img class="img-fluid pr-2 pb-5" src="{{doc.url}}">
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-10">
+                                        <h4 class="text-muted">{{recipient.nameOfRecipient}}</h4>
+                                        <p>
+                                            {{recipient.recipientBodyCopy}}
+                                        </p>
+                                    </div>
+                                {% endfor %}
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row bg-half-gray pb-5">
+                    <div class="col pb-5">
+                        <div class="container">
+                            <h4 class="text-secondary py-4">Previous ATLAS Award Recipents</h4>
+                            <div class="table-responsive pl-4 bg-white border border-danger">
+                                <table class="table table-bordered m-0 text-muted">
+                                    <tbody>
+                                        {% for row in entry.atlasAwardPreviousWinnersTable %}
+                                            <tr>
+                                            <td class="border-left-0 text-left font-lg">{{row.year}}</td>
+                                            <td class="text-uppercase font-sm pl-4 align-middle"><b>{{row.winnerSpecialty}}</b></td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="tab-pane fade" id="nav-vca" role="tabpanel" aria-labelledby="nav-vca-tab">
+ 
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <div class="container">
+                            <h2 class="mb-3">The Vascular Career Advancement Award</h2>
+                            
+                            {{entry.vcaAwardBodyCopy}}
+
+                            <h4 class="text-secondary py-4">{{entry.vcaAwardHonoreeHeader}}</h4>
+                            <div class="row mb-5">
+                                {% for recipient in entry.vcaAwardRecipient %}
+                                    <div class="col-md-2">
+                                        {% set doc = recipient.headshot.first() %}
+                                        {% if doc %}
+
+                                            <img class="img-fluid pr-2 pb-5" src="{{doc.url}}">
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-10">
+                                        <h4 class="text-muted">{{recipient.nameOfRecipient}}</h4>
+                                        <p>
+                                            {{recipient.bodyCopy}}
+                                        </p>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row bg-half-gray pb-5">
+                    <div class="col pb-5">
+                        <div class="container">
+                            <h4 class="text-secondary py-4">Previous VCA Award Recipents</h4>
+                            <div class="table-responsive pl-4 bg-white border border-danger">
+                                <table class="table table-bordered m-0 text-muted">
+                                    <tbody>
+                                        
+                                        {% for row in entry.previousVcaRecipientsTable %}
+                                            <tr>
+                                            <td class="border-left-0 text-left font-lg">{{row.year}}</td>
+                                            <td class="text-uppercase font-sm pl-4 align-middle"><b>{{row.awardWinners}}</b></td>
+                                            </tr>
+                                        {% endfor %}
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="tab-pane fade" id="nav-veins" role="tabpanel" aria-labelledby="nav-veins-tab">
+ 
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <div class="container">
+                            <h2 class="mb-3">Venous, Educator, Innovator and National Statesman Award</h2>
+                            <p class="mb-5">Coming to The VEINS at VIVA 2018</p>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+
+    </div>
+        
+ 
+ {% endblock %}
+ 
+ 

@@ -1,0 +1,311 @@
+{#
+ # VEINS Programming template
+ # ---------------
+ #
+ # When this template gets loaded, it will be because someone has accessed
+ # http://yoursite.com/ (without any URI). Craft checks to see if you have
+ # a Single section set to be the Homepage (as you do, by default), and
+ # loads the section’s Template (this file). A special ‘entry’ variable
+ # will already be set for you, assigned to the Homepage entry.
+ #
+ # It's worth noting that even if you didn't have a Homepage Single section,
+ # as long as this template remains at craft/templates/index.html, it
+ # would still be the one to get loaded when accessing http://yoursite.com/,
+ # albeit without an ‘entry’ variable already set for you.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layout.html" %}
+
+{% block pageTitle %}Attend VEINS{% endblock %}
+
+{% block main %}
+
+    <header id="header">
+        <div class="container-fluid veins-header text-light reformat-header">
+            <div class="row fixrow pc-adjuster">
+                <div class="col fixcol">
+                    <div class="container py-md-6 py-5 py-lg-8 shorten-banners">
+                        <h4 class="text-danger font-italic"><span class="text-uppercase">{{globalYearDates.veinsDates}}, {{globalYearDates.advertisedYear}}</span> | Wynn Las Vegas</h4>
+                        <h1 class="display-4 text-uppercase">Attend The VEINS at VIVA {{globalYearDates.advertisedYear}}</h1>
+                        <p class="lead">{{entry.veinsBannerBodyCopy}}</p>
+                        <a class="btn btn-sm btn-primary" href="/register" onClick="ga('send', 'event', 'Register', 'VEINS Overview click','Banner')">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="intro">
+        <div class="container-fluid">
+            <div class="container matchwidth">
+                <div class="row pb-6">
+                    <div class="col-md-4 program-image">
+                        <img class="img-fluid py-4" src="/images/program-overview-veins.jpg"/>
+                    </div>
+                    <div class="col-md-8">
+                        <img class="img-fluid py-4 w-25" src="/images/veins-at-viva-01.svg"/>
+                        <h2>
+                            Program Overview
+                        </h2>
+                        {{entry.veinsProgramOverviewBodyCopy}}
+                        {% set doc = entry.veinsBrochure.first() %}
+                        {% if doc %}
+                            <a href="{{doc.url}}" target="_blank" class="angle-link">Download The VEINS at VIVA {{globalYearDates.advertisedYear}} Brochure</a>
+                        {% endif %}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="masonry" style="background-color:#eeeeee;">
+        <div class="row no-gutters">
+            <div class="col-md-6">
+                <div class="row no-gutters purplerow50">
+                    <div class="col-md p-0 text-light viens-faculty-cta">
+                        <div class="p-5">
+                            <h2>Faculty</h2>
+                            <p>
+                                {{entry.veinsFacultyPurpleTileBodyCopy}}
+                            </p>
+                            <a class="btn btn-sm btn-primary" href="/faculty" onclick="setCookie()">Invited Faculty</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col">
+                        <img class="img-fluid imgfixed" src="/images/grid-6.jpg">
+                    </div>
+                    <div class="col">
+                        <img class="img-fluid imgfixed" src="/images/grid-7.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row no-gutters">
+                    <div class="col">
+                        <img class="img-fluid" src="/images/grid-8.jpg">
+                    </div>
+                    <div class="col">
+                        <img class="img-fluid" src="/images/grid-9.jpg">
+                    </div>
+                </div>
+                <div class="row no-gutters purplerow50">
+                    <div class="col-md p-0 text-light agenda-cta">
+                        <div class="p-5">
+                            <h2>Agenda</h2>
+                            <p>
+                                {{entry.veinsAgendaPurpleTileBodyCopy}}
+                            </p>
+                            <a class="btn btn-sm btn-primary" href="/agenda" onclick="setCookie()">See Full Agenda</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="accreditation" class="bg-gray">
+        <div class="container">
+            <div class="row py-6">
+                <div class="col">
+                    <h2>Accreditation</h2>
+                    <p>
+                        {{entry.veinsAccreditationBodyCopy}}
+                    </p>
+                    <a href="/veins-accreditation" class="angle-link">Learning Objectives</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="registration">
+        <div class="container">
+            <div class="row py-6">
+                <div class="col">
+                    <div class="clearfix pb-4">
+                        <a class="btn btn-primary float-right" href="/register" role="button"  onClick="ga('send', 'event', 'Register', 'VEINS Overview click','Registration table')">Register</a>
+                        <h2 class="mb-0">Registration</h2>
+                        <h5 class="text-primary float-left m-0 font-italic w-semibold"><span class="text-uppercase">{{globalYearDates.veinsDates}}, {{globalYearDates.advertisedYear}}</span> | Wynn Las Vegas</h5>
+                    </div>
+
+                    <div class="panel-group border border-danger" id="reg-accordion">
+
+                        <div class="panel">
+                            <div class="panel-heading p-4 bg-light">
+                                <h4 class="panel-title m-0">
+                                    <a class="accordion-toggle text-secondary text-uppercase" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                        VEINS Attendees
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse show">
+
+                                <div class="panel-body table-responsive pl-4">
+                                    <table class="table table-bordered text-center m-0">
+                                        <tbody class="registration font-sm">
+                                            <tr class="text-secondary">
+                                            <td class="border-left-0 border-top-0 text-left">
+                                                <img src="/images/veins-at-viva-01.svg" class="img-fluid pt-2"/>
+                                            </td>
+                                            <td class="border-top-0 text-uppercase head">
+                                                <strong>Early Bird</strong> <br>{{pricingTables.earlyBirdDate}}
+                                            </td>
+                                            <td class="border-top-0 text-uppercase head">
+                                                <strong>Prime</strong> <br>{{pricingTables.primeDates}}
+                                            </td>
+                                            <td class="border-right-0 border-top-0 text-uppercase head">
+                                                <strong>Standard</strong> <br>{{pricingTables.standardTicketsDate}}
+                                            </td>
+                                            <td class="border-right-0 border-top-0 text-uppercase head">
+                                                <strong>Requirements</strong> <br>(Needed during the registration process)
+                                            </td>
+                                            </tr>
+
+                                            {% for row in pricingTables.veinsPricingTable %}
+                                                <tr>
+                                                    <td class="border-left-0 text-left text-secondary">{{row.ticketType}}</td>
+                                                    <td class="font-lg">{{row.earlyBirdPrice}}</td>
+                                                    <td class="bg-lighter font-lg">{{row.primePrice}}</td>
+                                                    <td class="border-right-0 font-lg">{{row.standardPrice}}</td>
+                                                    <td class="border-right-0 font-sm">{{row.requirements}}</td>
+                                                </tr>
+                                            {% endfor %}
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel">
+                            <div class="panel-heading p-4 bg-light">
+                                <h4 class="panel-title m-0">
+                                    <a class="accordion-toggle text-secondary" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                        <span class="text-uppercase">Attend Virtually</span> <br> <small class="pl-4 font-sm">(Includes access to all content via app)</small>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse">
+                                <div class="panel-body table-responsive pl-4">
+                                    <table class="table table-bordered text-center m-0">
+                                            <tbody class="registration font-sm">
+                                                <tr class="text-secondary">
+                                                <td class="border-left-0 border-top-0 text-left">
+                                                    <img src="/images/virtual-viva.png" class="img-fluid pt-1"/>
+                                                </td>
+                                                <td class="border-top-0 text-uppercase head">
+                                                    <strong>Early Bird</strong> <br>{{pricingTables.earlyBirdDate}}
+                                                </td>
+                                                <td class="border-top-0 text-uppercase head">
+                                                    <strong>Prime</strong> <br>{{pricingTables.primeDates}}
+                                                </td>
+                                                <td class="border-right-0 border-top-0 text-uppercase head">
+                                                    <strong>Standard</strong> <br>{{pricingTables.standardTicketsDate}}
+                                                </td>
+                                                <td class="border-right-0 border-top-0 text-uppercase head">
+                                                    <strong>Requirements</strong> <br>(Needed during the registration process)
+                                                </td>
+                                                </tr>
+
+                                                {% for row in pricingTables.virtualVivaTable %}
+                                                    <tr>
+                                                        <td class="border-left-0 text-left text-secondary">{{row.ticketType}}</td>
+                                                        <td class="font-lg">{{row.earlyBirdPrice}}</td>
+                                                        <td class="bg-lighter font-lg">{{row.primePrice}}</td>
+                                                        <td class="border-right-0 font-lg">{{row.standardPrice}}</td>
+                                                        <td class="border-right-0 font-sm">{{row.requirements}}</td>
+                                                    </tr>
+                                                {% endfor %}
+
+                                            </tbody>
+                                        </table>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta">
+        <div class="container-fluid text-center text-light">
+            <div class="row">
+                <div class="col-md-6 p-0 exhibitors-cta">
+                    <div class="p-5">
+                        <h2>{{globalYearDates.advertisedYear}} Exhibitors</h2>
+                        <p>
+                            {{entry.exhibitorsPurpleTileBodyCopy}}
+                        </p>
+                        <div class="angle-link-container">
+                            <a href="/exhibitors" class="angle-link text-light" onclick="setCookie()">View Exhibitors</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 p-0 attend-veins supporters-cta">
+                    <div class="p-5">
+                        <h2>Commercial Supporters</h2>
+                        <p>
+                            {{entry.commercialSupportersPurpleTileBodyCopy}}
+                        </p>
+
+                        <div class="angle-link-container">
+                            <a href="/commercial-supporters" class="angle-link text-light" onclick="setCookie()">View Supporters</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="venue" class="bg-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 pr-md-0 pt-5">
+                    <img class="img-fluid w-100" src="/images/wynn-photo-home.jpg"/>
+                </div>
+                <div class="col-md-6 pl-md-5 pt-5 pb-5">
+                    <h2>The Venue</h2>
+                    {{venue.venueBodyCopy}}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="viva-app">
+        <div class="container">
+            <div class="row pt-5">
+                <div class="col-md pt-md-5 mt-md-5">
+                    <h2>Virtual Viva App</h2>
+                    <p>
+                        {{virtualViva.virtualVivaBannerBodyCopy}}
+                    </p>
+                    <a href="#" class="angle-link">Learn More</a>
+                </div>
+                <div class="col-md pt-5">
+                    <img class="img-fluid" src="/images/viva-app.png"/>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+
+      function setCookie() {
+        document.cookie="conferenceSelected=veins";
+      }
+
+    </script>
+
+ {% endblock %}

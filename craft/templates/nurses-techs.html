@@ -1,0 +1,146 @@
+{#
+ # Nurses + Techs template
+ # ---------------
+ #
+ # When this template gets loaded, it will be because someone has accessed
+ # http://yoursite.com/ (without any URI). Craft checks to see if you have
+ # a Single section set to be the Homepage (as you do, by default), and
+ # loads the section’s Template (this file). A special ‘entry’ variable
+ # will already be set for you, assigned to the Homepage entry.
+ #
+ # It's worth noting that even if you didn't have a Homepage Single section,
+ # as long as this template remains at craft/templates/index.html, it
+ # would still be the one to get loaded when accessing http://yoursite.com/,
+ # albeit without an ‘entry’ variable already set for you.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layout.html" %}
+
+{% block pageTitle %}Nurses & Techs{% endblock %}
+
+{% block main %}
+
+    <header id="header">
+        <div class="container-fluid nurses-techs-header text-light reformat-header">
+            <div class="row fixrow pc-adjuster">
+                <div class="col fixcol">
+                    <div class="container py-md-6 py-5 py-lg-8 shorten-banners">
+                        <h1 class="display-4 text-uppercase">Nurse & Techs</h1>
+                        <p class="lead mr-md-10">{{entry.nursesAndTechBannerCopy}}</p>
+                        <a class="btn btn-sm btn-primary" href="/agenda" onclick="setCookie()">See Agenda</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="intro">
+        <div class="container-fluid">
+            <div class="container matchwidth">
+                <div class="row py-6">
+                    <div class="col">
+                        <img class="img-fluid py-4 w-25 pr-md-5" src="/images/nurses-and-techs.svg"/>
+                        <h2>
+                            Target Audience
+                        </h2>
+                        <p>
+                            {{entry.targetAudienceBodyCopy}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="learning-objectives" class="bg-gray">
+        <div class="container">
+            <div class="row pb-5">
+                <div class="col-md-6 pt-6">
+                    <h2>Learning Objectives</h2>
+                    <strong>At the conclusion of each day’s course, the targeted learners should be able to:</strong>
+                    {{entry.NTlearningObjectivesLeftBullets}}
+                </div>
+                <div class="col-md-6 pt-6">
+                    <img class="img-fluid" src="/images/learning-objectives4.jpg">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 d-none d-md-inline pt-5 pb-5">
+                    <img class="img-fluid" src="/images/learning-objectives5.jpg">
+                </div>
+                <div class="col pt-5 pb-5">
+                    {{entry.NTlearningObjectivesRightBullets}}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="accreditation">
+        <div class="container">
+            <div class="row py-6">
+                <div class="col accreditationCraft">
+                    <h2>Accreditation</h2>
+                    {{entry.accreditationBodyCopy}}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta-section">
+        <div class="container-fluid text-center text-light">
+            <div class="row">
+                <div class="col p-0 nurses-techs-faculty-cta">
+                    <div class="py-6">
+                        <h2>Faculty</h2>
+                        <p>
+                            {{entry.facultyPurpleTileBodyCopy}}
+                        </p>
+                        <div class="angle-link-container">
+                            <a href="/faculty" class="angle-link text-light">Invited Faculty</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="claim credits" class="bg-gray">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 program-image pt-5 pb-5">
+                        <img class="img-fluid w-100" src="/images/claim-credits2.jpg"/>
+                    </div>
+                    <div class="col-md-8 pt-5 pl-md-5 pb-6">
+                        <h2>
+                            Claim Credits
+                        </h2>
+                        <p>
+                            {{entry.ntclaimCreditsCopy}}
+                        </p>
+                        {% for claimCreditsYearLink in entry.yearLinks %}
+                            <a class="mr-3" href="{{claimCreditsYearLink.hyperlink}}" target="_blank"><u>{{claimCreditsYearLink.year}}</u></a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <script type="text/javascript">
+
+      function setCookie() {
+        document.cookie="agendaSelected=nurses";
+      }
+
+    </script>
+
+
+
+ {% endblock %}

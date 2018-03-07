@@ -1,0 +1,168 @@
+{#
+ # About Us template
+ # ---------------
+ #
+ # When this template gets loaded, it will be because someone has accessed
+ # http://yoursite.com/ (without any URI). Craft checks to see if you have
+ # a Single section set to be the Homepage (as you do, by default), and
+ # loads the section’s Template (this file). A special ‘entry’ variable
+ # will already be set for you, assigned to the Homepage entry.
+ #
+ # It's worth noting that even if you didn't have a Homepage Single section,
+ # as long as this template remains at craft/templates/index.html, it
+ # would still be the one to get loaded when accessing http://yoursite.com/,
+ # albeit without an ‘entry’ variable already set for you.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layout.html" %}
+
+{% block pageTitle %}About Us{% endblock %}
+
+{% block main %}
+
+
+    <header id="header">
+        <div class="container-fluid about-us-header text-light reformat-header">
+            <div class="row determine-banner-width">
+                <div class="col fixcol">
+                    <div class="container py-md-6 py-5 py-lg-8 shorten-banners">
+                        <h1 class="display-4 text-uppercase pb-2">VIVA Physicians</h1>
+                        <a class="btn btn-sm btn-primary" href="/contact">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <section id="intro">
+        <div class="container-fluid">
+            <div class="row py-6">
+                <div class="col">
+                    <div class="container matchwidth">
+                        <h2>About Us</h2>
+                        {{entry.aboutUsBodyCopy}}
+                    </div>
+                </div>
+            </div>
+            <div class="row bg-half-gray pb-5">
+                <div class="col">
+                    <div class="container">
+                        <div class="container embed-responsive embed-responsive-16by9">
+                            <div id="player"></div>
+                            <div id="play-button-overlay" class="embed-responsive-item about-us-image-overlay">
+                                <span class="helper"></span>
+                                <img src="images/viva_playbutton.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mission" class="bg-gray">
+        <div class="container">
+            <div class="row d-flex pt-4">
+                <div class="col-md-6 pt-5">
+                        <h2>Mission</h2>
+                        <strong>VIVA Physicians is committed to:</strong>
+                        {{entry.missionBullets}}
+
+                </div>
+                <div class="col-md-6 pl-md-5 pt-5 pb-5">
+                        <img class="img-fluid" src="/images/mission.jpg"/>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="list">
+        <div class="container my-6">
+            <div class="row mb-3">
+                <div class="col">
+                    <h2><a id="board-of-directors" class="anchor-board"></a>Board of Directors</h2>
+                </div>
+            </div>
+            <div class="board-wrapper">
+                <ol id="board-list" class="list-unstyled"></ol>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section id="list">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="output">
+                        <ul id="people"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script type ="text/javascript">
+
+
+
+        loadDoc('http://facultydevapi.vivapvd.com/api/Site/GetFacultyBoardMemberInfo/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d', myFunction1);
+        // viva faculty
+            function loadDoc(url, cFunction) {
+                var xhttp;
+                xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    cFunction(this);
+                }
+                };
+                xhttp.open("GET", url, true);
+                xhttp.send();
+            }
+
+            function myFunction1(xhttp) {
+                var response = JSON.parse(xhttp.responseText);
+                console.log(response.Data);
+                var people = response.Data;
+                document.getElementById('board-list').innerHTML = `
+
+                ${people.map(function(person){
+                  var cityState = "";
+                  if (person.City == "" && person.State != "")
+                  {
+                    cityState += person.State;
+                  }
+                  else if (person.City != "" && person.State != "") {
+                    cityState += person.City + ", " + person.State;
+                  }
+                  return `
+                  <li>
+                      <div class="media my-3">
+                          <img class="img-fluid frame-square" src="${person.profile_pic}" alt="Generic placeholder image">
+                          <div class="media-body font-sm">
+                              <p class="p-0 m-0 text-uppercase text-secondary w-semibold">${person.display_name}</p>
+                              <p class="p-0 m-0"><strong style="color:#414042">${person.specialties}</strong></p>
+                              <p class="p-0 m-0">${person.organization}</p>
+                              <p class="p-0 m-0 font-italic text-muted">${cityState}</p>
+                              <a href="${person.pubmed}" target="_blank" style="cursor:pointer;"><p class="p-0 m-0">Pubmed</p></a>
+                          </div>
+                      </div>
+                  </li>
+
+                    `
+                }).join('')}
+
+
+                `
+                ;
+            }
+
+    </script>
+
+ {% endblock %}

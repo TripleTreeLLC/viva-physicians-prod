@@ -1,0 +1,203 @@
+{#
+ # VIVA Exhibitors template
+ # ---------------
+ #
+ # When this template gets loaded, it will be because someone has accessed
+ # http://yoursite.com/ (without any URI). Craft checks to see if you have
+ # a Single section set to be the Homepage (as you do, by default), and
+ # loads the section’s Template (this file). A special ‘entry’ variable
+ # will already be set for you, assigned to the Homepage entry.
+ #
+ # It's worth noting that even if you didn't have a Homepage Single section,
+ # as long as this template remains at craft/templates/index.html, it
+ # would still be the one to get loaded when accessing http://yoursite.com/,
+ # albeit without an ‘entry’ variable already set for you.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layout.html" %}
+
+{% block pageTitle %}VIVA Exhibitors{% endblock %}
+
+{% block main %}
+
+    <header id="header">
+        <div class="container-fluid exhibitors-header text-light reformat-header">
+            <div class="row determine-banner-width">
+                <div class="col fixcol">
+                    <div class="container py-md-6 py-5 py-lg-8 shorten-banners">
+                        <h1 class="display-4 text-uppercase">{{globalYearDates.advertisedYear}} Exhibitors</h1>
+                        <p class="lead pb-2">{{entry.exhibitorsBannerBodyCopy}}</p>
+                        <a class="btn btn-sm btn-primary" href="/exhibit-market">Exhibit & Market</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <section id="exhibitors-list">
+        <div class="container matchwidth">
+            <!--
+            <div class="row">
+                <div class="col pb-5 pt-50">
+                    <nav>
+                        <div class="nav text-uppercase" id="nav-tab" role="tablist">
+                            <a class="nav-item active mr-4" id="nav-viva18-tab" data-toggle="tab" href="#nav-viva18" role="tab" aria-controls="nav-viva18" aria-selected="true">VIVA 2018</a>
+                            <a class="nav-item"fluid id="nav-viens-tab" data-toggle="tab" href="#nav-viens" role="tab" aria-controls="nav-viens" aria-selected="false">The Viens at VIVA</a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            -->
+            <div class="row">
+                <div class="col pb-5 pt-50">
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="table-responsive pl-4 bg-white border border-danger drop-shadow">
+                            <p style="margin-top:1rem;">
+                                Coming soon!
+                            </p>
+                        </div>
+
+                        <!--
+                        <div class="tab-pane fade show active" id="nav-viva18" role="tabpanel" aria-labelledby="nav-viva18-tab">
+                            <div class="table-responsive pl-4 bg-white border border-danger drop-shadow">
+                                <table class="table m-0 font-sm text-uppercase text-mute less-margin mb-40">
+                                    <h3 class="mt-40 text-secondary w-semibold">VIVA <span class="text-capitalize">Exhibitors</span></h3>
+                                    <p>Coming soon!</p>
+                                    <tbody>
+
+                                        <tr class="pl-4">
+                                            <ul id="list-exh" class="list-unstyled text-uppercase">
+                                            </ul>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="tab-pane fade" id="nav-viens" role="tabpanel" aria-labelledby="nav-viens-tab">
+                            <div class="table-responsive pl-4 bg-white border border-danger drop-shadow">
+                                <table class="table m-0 font-sm text-uppercase text-mute less-margin mb-40">
+                                    <h3 class="mt-40 text-secondary w-semibold">VEINS <span class="text-capitalize">Exhibitors</span></h3>
+                                    <p>Coming soon!</p>
+                                    <tbody>
+
+                                        <tr class="pl-4">
+                                            <ul id="veins-list-exh" class="list-unstyled text-uppercase">
+                                            </ul>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        -->
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    <script type ="text/javascript">
+        loadDoc('http://rest.vivapvd.com/exhibitors/', myFunction1);
+
+            function loadDoc(url, cFunction) {
+                var xhttp;
+                xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    cFunction(this);
+                }
+                };
+                xhttp.open("GET", url, true);
+                xhttp.send();
+            }
+
+            function myFunction1(xhttp) {
+                var response = JSON.parse(xhttp.responseText);
+                var data = response;
+                var text = "";
+                console.log(data);
+                for (var i = 0; i < data.length; i++) {
+                    text += "<p>" + data[i] + "</p>";
+                    document.getElementById('list-exh').innerHTML = text
+                };
+            }
+
+
+    </script>
+
+    <script
+    src="http://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+    crossorigin="anonymous"></script>
+    <script type ="text/javascript">
+    $(window).on('load', function() {
+      preVeins();
+    });
+        loadDoc('http://rest.vivapvd.com/ExhibitorsVeins', myFunction1);
+
+            function loadDoc(url, cFunction) {
+                var xhttp;
+                xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    cFunction(this);
+                }
+                };
+                xhttp.open("GET", url, true);
+                xhttp.send();
+            }
+
+            function myFunction1(xhttp) {
+                var response = JSON.parse(xhttp.responseText);
+                var data = response;
+                var text = "";
+                console.log(data);
+                for (var i = 0; i < data.length; i++) {
+                    text += "<p>" + data[i] + "</p>";
+                    document.getElementById('veins-list-exh').innerHTML = text
+                };
+            }
+
+            function preVeins() {
+              var conferenceSelected = readCookie("conferenceSelected");
+              if (conferenceSelected == "veins")
+              {
+                $('a[href="#nav-viens"]').click();
+                document.cookie="conferenceSelected=none";
+              }
+            }
+
+            function readCookie(name) {
+              var nameEQ = name + "=";
+              var ca = document.cookie.split(';');
+              for(var i=0;i < ca.length;i++) {
+                  var c = ca[i];
+                  while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                  if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+              }
+              return null;
+            }
+
+
+
+    </script>
+
+
+
+ {% endblock %}

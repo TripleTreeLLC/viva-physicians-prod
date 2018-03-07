@@ -1,0 +1,117 @@
+{#
+ # Industry Partners template
+ # ---------------
+ #
+ # When this template gets loaded, it will be because someone has accessed
+ # http://yoursite.com/ (without any URI). Craft checks to see if you have
+ # a Single section set to be the Homepage (as you do, by default), and
+ # loads the section’s Template (this file). A special ‘entry’ variable
+ # will already be set for you, assigned to the Homepage entry.
+ #
+ # It's worth noting that even if you didn't have a Homepage Single section,
+ # as long as this template remains at craft/templates/index.html, it
+ # would still be the one to get loaded when accessing http://yoursite.com/,
+ # albeit without an ‘entry’ variable already set for you.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layout.html" %}
+
+{% block pageTitle %}Industry Partners{% endblock %}
+
+{% block main %}
+
+
+    <header id="header">
+        <div class="container-fluid partners-header text-light reformat-header">
+            <div class="row fixrow pc-adjuster">
+                <div class="col fixcol">
+                    <div class="container py-md-6 py-6 py-lg-8 shorten-banners">
+                        <h4 class="text-danger font-italic"><span class="text-uppercase">{{globalYearDates.vivaConferenceDates}}, {{globalYearDates.advertisedYear}}</span> | Wynn Las Vegas</h4>
+                        <h1 class="display-4 text-uppercase">Industry Partners</h1>
+                        <p class="lead pb-2">{{entry.industryOpportunitiesBannerBodyCopy}}</p>
+                        <a class="btn btn-sm btn-primary mr-5 mt-3" href="/exhibit-market">Exhibit & Market</a>
+                        <a class="btn btn-sm btn-primary mt-3" href="/support">Support VIVA</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="intro">
+        <div class="container py-4 matchwidth">
+            <div class="row">
+                <div class="col">
+                    <h2 class="pt-5">Welcoming VIVA {{globalYearDates.advertisedYear}} Partners</h2>
+                    <p class="pb-5 font-lg">{{entry.welcomingVivaPartnersBodyCopy}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="main" class="bg-gray">
+        <div class="container py-5">
+            <div class="row pb-5 my-5 d-flex align-items-center dark-border">
+                <div class="col-md-4 pb-md-0 pb-5">
+                    <img class="img-fluid" src="/images/support-viva.jpg">
+                </div>
+                <div class="col-md-8">
+                    <h2>Exhibit and Market at VIVA and The VEINS</h2>
+                    <p>{{entry.exhibitorAndMarketBodyCopy}}</p>
+                    <a href="/exhibit-market" class="angle-link">Learn More</a>
+                </div>
+            </div>
+
+            <div class="row pb-5 my-5 d-flex align-items-center dark-border">
+                <div class="col-md-4 pb-md-0 pb-5">
+                    <img class="img-fluid" src="/images/exhibitandmarket.jpg">
+                </div>
+                <div class="col-md-8">
+                    <h2>Device Library and Live Case Index</h2>
+                    <p>{{entry.deviceLibraryAndCaseIndexBodyCopy}}</p>
+                    <a href="/device-library" class="angle-link">Learn More</a>
+                </div>
+            </div>
+
+            <div class="row pb-5 my-5 d-flex align-items-center dark-border">
+                <div class="col-md-4 pb-md-0 pb-5">
+                    <img class="img-fluid" src="/images/device-library.jpg">
+                </div>
+                <div class="col-md-8">
+                    <h2>Support VIVA</h2>
+                    <p>{{entry.supportVivaBodyCopy}}</p>
+                    <a href="/support" class="angle-link">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="row pb-5 my-5 d-flex align-items-center dark-border">
+                <div class="col-md-4 pb-md-0 pb-5">
+                    <img class="img-fluid" src="/images/18exhibitors.jpg">
+                </div>
+                <div class="col-md-8">
+                    <h2>{{globalYearDates.advertisedYear}} Exhibitors</h2>
+                    <p>{{entry.exhibitorsBodyCopy}}</p>
+                    <a href="/exhibitors" class="angle-link">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="row my-5 d-flex align-items-center">
+                <div class="col-md-4 pb-md-0 pb-5">
+                    <img class="img-fluid" src="/images/exhibitors-partners.jpg">
+                </div>
+                <div class="col-md-8">
+                    <h2>Commercial Supporters</h2>
+                    <p>{{entry.commercialSupportersBodyCopy}}</p>
+                    <a href="/commercial-supporters" class="angle-link">Learn More</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+ {% endblock %}
+ 
+ 

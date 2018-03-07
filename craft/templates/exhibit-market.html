@@ -1,0 +1,144 @@
+{#
+ # Exhibit & Market template
+ # ---------------
+ #
+ # When this template gets loaded, it will be because someone has accessed
+ # http://yoursite.com/ (without any URI). Craft checks to see if you have
+ # a Single section set to be the Homepage (as you do, by default), and
+ # loads the section’s Template (this file). A special ‘entry’ variable
+ # will already be set for you, assigned to the Homepage entry.
+ #
+ # It's worth noting that even if you didn't have a Homepage Single section,
+ # as long as this template remains at craft/templates/index.html, it
+ # would still be the one to get loaded when accessing http://yoursite.com/,
+ # albeit without an ‘entry’ variable already set for you.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layout.html" %}
+
+{% block pageTitle %}Exhibit & Market{% endblock %}
+
+{% block main %}
+
+    <header id="header">
+        <div class="container-fluid exhibit-market-header text-light reformat-header">
+            <div class="row fixrow pc-adjuster">
+                <div class="col fixcol">
+                    <div class="container py-md-6 py-5 py-lg-8 shorten-banners">
+                        <h1 class="display-4 text-uppercase">Exhibit and Market with VIVA</h1>
+                        <p class="lead mr-md-10">{{entry.exhibitMarketBannerBodyCopy}}</p>
+                        <a class="btn btn-sm btn-primary" target="_blank" href="{{entry.exhibitAndMarketUrl}}">Exhibit & Market Portal</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="intro">
+        <div class="container-fluid">
+            <div class="container matchwidth">
+                <div class="row pb-6">
+                    <div class="col-md-4 program-image pt-5">
+                        <img class="img-fluid" src="/images/why-exhibit.jpg"/>
+                    </div>
+                    <div class="col-md-8 pt-5 pl-md-40">
+                        <h2>
+                            Why Exhibit at VIVA and The VEINS
+                        </h2>
+                        <p>
+                            {{entry.whyExhibitBodyCopy}}
+                        </p>
+
+                        {% set doc = entry.exhibitorProspectusPdf.first() %}
+                        {% if doc %}
+                            <a href="{{doc.url}}" target="_blank" class="angle-link">Exhibitor Prospectus (VIVA and The VEINS)</a>
+                        {% endif %}
+
+                        <br>
+                        <a href="{{entry.floorPlansUrl}}" target="_blank" class="angle-link-br">{{globalYearDates.advertisedYear}} Floor Plans</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="viva-offer" class="bg-gray">
+        <div class="container">
+            <div class="row pt-0 pb-6">
+                <div class="col-md-6 pt-50">
+                    <h2>VIVA and The VEINS at VIVA Offer:</h2>
+
+                    {{entry.vivaAndTheVeinsBodyCopy}}
+
+                    <a href="https://www.conferenceharvester.com/harvester2ex/login.asp?EventKey=DYBOHPGU" target="_blank" class="angle-link">Exhibit & Market Portal</a>
+                </div>
+                <div class="col-md-6 pt-50">
+                    <img class="img-fluid" src="/images/viva-offers.jpg">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section id="cta-section">
+        <div class="container-fluid text-center text-light">
+            <div class="row">
+                <div class="col p-0 exhibitors-cta">
+                    <div class="py-6">
+                        <h2>{{globalYearDates.advertisedYear}} Exhibitors</h2>
+                        <p>
+                            {{entry.exhibitorsPagePurpleTileBodyCopy}}
+                        </p>
+                        <div class="angle-link-container">
+                            <a href="/exhibitors" class="angle-link text-light">View exhibitors</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="important-dates">
+        <div class="container">
+            <div class="row py-6">
+                <div class="col">
+                    <h2>Important Dates</h2>
+                    <div class="table-responsive pl-4 mt-40 bg-white border border-danger drop-shadow">
+                        <table class="table table-bordered m-0 text-muted text-uppercase important-dates">
+                            <tbody>
+                                {% for row in entry.importantDatesTable %}
+                                    <tr>
+                                        <td class="border-left-0 text-left align-middle"><strong>{{row.date}}</strong></td>
+                                        <td class="font-sm pl-4 align-middle">{{row.description}}</td>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="alert" class="bg-red">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row">
+                    <div class="col py-5 text-white font-lg w-semibold font-italic">
+                        {{entry.redTileBodyCopy}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ {% endblock %}

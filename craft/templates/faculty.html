@@ -1,0 +1,405 @@
+{#
+ # Faculty template
+ # ---------------
+ #
+ # When this template gets loaded, it will be because someone has accessed
+ # http://yoursite.com/ (without any URI). Craft checks to see if you have
+ # a Single section set to be the Homepage (as you do, by default), and
+ # loads the section’s Template (this file). A special ‘entry’ variable
+ # will already be set for you, assigned to the Homepage entry.
+ #
+ # It's worth noting that even if you didn't have a Homepage Single section,
+ # as long as this template remains at craft/templates/index.html, it
+ # would still be the one to get loaded when accessing http://yoursite.com/,
+ # albeit without an ‘entry’ variable already set for you.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layout.html" %}
+
+{% block pageTitle %}Faculty{% endblock %}
+
+{% block main %}
+
+    <header id="header">
+        <div class="container-fluid faculty-header text-light reformat-header">
+            <div class="row fixrow pc-adjuster">
+                <div class="col fixcol">
+                    <div class="container py-md-6 py-5 py-lg-8 shorten-banners">
+                        <h1 class="display-4 text-uppercase">Faculty</h1>
+                        <p class="lead mr-md-10">{{entry.facultyBannerBodyCopy}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+    <section id="list">
+        <div class="container matchwidth">
+
+            <div class="row">
+                <div class="col pb-5 pt-50">
+                    <nav>
+                        <div class="nav text-uppercase" id="nav-tab" role="tablist">
+                            <a class="nav-item active mr-4 viva-identif" id="nav-viva18-tab" data-toggle="tab" href="#nav-viva18" role="tab" aria-controls="nav-viva18" aria-selected="true">VIVA {{globalYearDates.advertisedYear}}</a>
+                            <a class="nav-item veins-identif" id="nav-viens-tab" data-toggle="tab" href="#nav-viens" role="tab" aria-controls="nav-viens" aria-selected="false">The Veins at VIVA</a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="row pb-6">
+                <div class="col">
+                    <div class="tab-content" id="nav-tabContent">
+
+                        <div class="tab-pane fade show active" id="nav-viva18" role="tabpanel" aria-labelledby="nav-viva18-tab">
+
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <h4 class="text-secondary w-semibold mb-0 pt-1 pb-4">Invited Faculty</h4>
+                                </div>
+                                <div class="col-md-9">
+                                        <nav>
+                                            <div class="nav text-uppercase float-right text-muted" id="myBtnContainer" role="tablist">
+                                                <a class="nav-item2 active viva-identif-cl" role="tab" data-toggle="tab" onclick="filterSelection('all')">Show all<a/>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('A')">A</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('B')">B</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('C')">C</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('D')">D</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('E')">E</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('F')">F</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('G')">G</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('H')">H</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('I')">I</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('J')">J</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('K')">K</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('L')">L</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('M')">M</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('N')">N</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('O')">O</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('P')">P</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('Q')">Q</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('R')">R</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('S')">S</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('T')">T</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('U')">U</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('V')">V</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('W')">W</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('X')">X</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('Y')">Y</a>
+                                                <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('Z')">Z</a>
+                                            </div>
+                                        </nav>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col board-wrapper">
+                                    <ol id="viva-f-list" class="list-unstyled"></ol>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="tab-pane fade" id="nav-viens" role="tabpanel" aria-labelledby="nav-viens-tab">
+
+                                <div class="row mb-3">
+                                    <div class="col-md-3">
+                                        <h4 class="text-secondary w-semibold mb-0 pt-1 pb-4">Invited Faculty</h4>
+                                    </div>
+                                    <div class="col-md-9">
+                                            <nav>
+                                                <div class="nav text-uppercase float-right text-muted" id="myBtnContainer" role="tablist">
+                                                    <a class="nav-item2 active veins-identif-cl" role="tab" data-toggle="tab" onclick="filterSelection('all')">Show all<a/>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('A')">A</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('B')">B</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('C')">C</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('D')">D</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('E')">E</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('F')">F</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('G')">G</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('H')">H</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('I')">I</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('J')">J</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('K')">K</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('L')">L</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('M')">M</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('N')">N</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('O')">O</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('P')">P</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('Q')">Q</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('R')">R</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('S')">S</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('T')">T</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('U')">U</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('V')">V</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('W')">W</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('X')">X</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('Y')">Y</a>
+                                                    <a class="nav-item2" role="tab" data-toggle="tab" onclick="filterSelection('Z')">Z</a>
+                                                </div>
+                                            </nav>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col board-wrapper">
+                                        <ol id="veins-f-list" class="list-unstyled"></ol>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    <script
+    src="http://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    $(window).on('load', function() {
+
+
+          //preVeins();
+    });
+
+
+
+    //window.onload = preVeins();
+        filterSelection("all")
+        function filterSelection(c) {
+            var x, i;
+            var removeclass = "." + c;
+            $( ".filterDivAll" ).filter( ".filterDiv" ).css( "display", "inline-block" );
+            if (c != "all") {
+                $( ".filterDiv" ).not( removeclass ).css( "display", "none" );
+                console.log(removeclass);
+            }
+
+        /*x = document.getElementsByClassName("filterDiv");
+        if (c == "all") c = "";
+        // Add the "show" class (display:block) to the filtered elements, and remove the "show" class from the elements that are not selected
+        for (i = 0; i < x.length; i++) {
+            w3RemoveClass(x[i], "show");
+            if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+        }*/
+        }
+
+        // Show filtered elements
+        function w3AddClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                if (arr1.indexOf(arr2[i]) == -1) {
+                    element.className += " " + arr2[i];
+                }
+            }
+        }
+
+        // Hide elements that are not selected
+        function w3RemoveClass(element, name) {
+            var i, arr1, arr2;
+            arr1 = element.className.split(" ");
+            arr2 = name.split(" ");
+            for (i = 0; i < arr2.length; i++) {
+                while (arr1.indexOf(arr2[i]) > -1) {
+                arr1.splice(arr1.indexOf(arr2[i]), 1);
+                }
+            }
+            element.className = arr1.join(" ");
+            var removeclass = "." + name;
+            console.log(removeclass);
+            $( ".filterDiv" ).filter( removeclass ).css( "display", "none" );
+        }
+
+        // Add active class to the current control button (highlight it)
+        var btnContainer = document.getElementById("myBtnContainer");
+        var btns = btnContainer.getElementsByClassName("nav-item");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function() {
+                var current = document.getElementsByClassName("active");
+                $(current).removeClass("active");
+                $(this).addClass("active");
+            });
+        }
+
+
+
+
+        function preVeins() {
+          var conferenceSelected = readCookie("conferenceSelected");
+          if (conferenceSelected == "veins")
+          {
+            $('a[href="#nav-viens"]').click();
+            delete_cookie("conferenceSelected");
+          }
+        }
+
+        function readCookie(name) {
+          var nameEQ = name + "=";
+          var ca = document.cookie.split(';');
+          for(var i=0;i < ca.length;i++) {
+              var c = ca[i];
+              while (c.charAt(0)==' ') c = c.substring(1,c.length);
+              if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+          }
+          return null;
+        }
+
+        function delete_cookie( name ) {
+          document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        }
+
+    </script>
+
+
+
+    <script type ="text/javascript">
+
+
+        loadDoc('http://api.vivapvd.com/api/Site/GetFacultyDetails/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=1&classes=1,3,4,5', myFunction1);
+        loadDoc('http://api.vivapvd.com/api/Site/GetFacultyDetails/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=2&classes=1,3,4,5', myFunction2);
+        // viva faculty
+            function loadDoc(url, cFunction) {
+                var xhttp;
+                xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    cFunction(this);
+                }
+                };
+                xhttp.open("GET", url, true);
+                xhttp.send();
+            }
+
+
+            function myFunction1(xhttp) {
+                var response = JSON.parse(xhttp.responseText);
+                console.log(response.Data);
+                var people = response.Data;
+
+
+
+                document.getElementById('viva-f-list').innerHTML = `
+                ${people.map(function(person){
+                    var cityState = "";
+                    if (person.City != "")
+                    {
+                      cityState += person.City;
+                    }
+                    if (person.State != "") {
+                      cityState += ", " + person.State;
+                    }
+                    if (person.Country != "")
+                    {
+                      cityState += ", " + person.Country;
+                    }
+                    var pos = person.Name.indexOf(" ");
+                    var firstLetterLastName = person.Name.slice(pos + 1, pos + 2);
+                    return `
+                    <li class="filterDiv ${firstLetterLastName} filterDivAll">
+                        <div class="media my-3">
+                            <img class="img-fluid frame-square" src="${person.Photo}" alt="Generic placeholder image">
+                            <div class="media-body font-sm">
+                                <p class="p-0 m-0 text-uppercase text-secondary w-semibold">${person.Name}, ${person.Degree}</p>
+                                <p class="p-0 m-0"><strong style="color:#414042">${person.Specialty}</strong></p>
+                                <p class="p-0 m-0">${person.organization}</p>
+                                <p class="p-0 m-0 font-italic text-muted">${cityState}</p>
+                                <a href="${person.pubmed}" target="_blank" style="cursor:pointer;"><p class="p-0 m-0">Pubmed</p></a>
+                            </div>
+                        </div>
+
+                    </li>
+
+                    `
+                }).join('')}
+
+
+                `
+                ;
+
+            }
+
+        // veins faculty
+            function myFunction2(xhttp) {
+                var response = JSON.parse(xhttp.responseText);
+                console.log(response.Data);
+                var people = response.Data;
+                document.getElementById('veins-f-list').innerHTML = `
+
+                ${people.map(function(person){
+                    var cityState = "";
+                    if (person.City != "")
+                    {
+                      cityState += person.City;
+                    }
+                    if (person.State != "") {
+                      cityState += ", " + person.State;
+                    }
+                    if (person.Country != "")
+                    {
+                      cityState += ", " + person.Country;
+                    }
+                    var pos = person.Name.indexOf(" ");
+                    var firstLetterLastName = person.Name.slice(pos + 1, pos + 2);
+                    return `
+                    <li class="filterDiv ${firstLetterLastName} filterDivAll">
+                        <div class="media my-3">
+                            <img class="img-fluid frame-square" src="${person.Photo}" alt="Generic placeholder image">
+                            <div class="media-body font-sm">
+                                <p class="p-0 m-0 text-uppercase text-secondary w-semibold">${person.Name}, ${person.Degree}</p>
+                                <p class="p-0 m-0"><strong style="color:#414042">${person.Specialty}</strong></p>
+                                <p class="p-0 m-0">${person.organization}</p>
+                                <p class="p-0 m-0 font-italic text-muted">${cityState}</p>
+                                <a href="${person.pubmed}" target="_blank" style="cursor:pointer;"><p class="p-0 m-0">Pubmed</p></a>
+                            </div>
+                        </div>
+                    </li>
+
+                    `
+                }).join('')}
+
+
+                `
+                ;
+
+            }
+
+            $(document).ready(function() {
+                $(".viva-identif").click(function() {
+                    $(".viva-identif-cl").click();
+                });
+
+                $(".veins-identif").click(function() {
+                    $(".veins-identif-cl").click();
+                });
+
+                preVeins();
+            });
+
+
+
+
+    </script>
+
+
+
+
+ {% endblock %}
