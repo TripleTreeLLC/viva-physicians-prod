@@ -85,7 +85,7 @@
             </div>
         </div>
     </header>
-    
+
     <section id="intro">
         <div class="container-fluid">
             <div class="row pt-7">
@@ -177,7 +177,7 @@
                         <p>
                             {{entry.rightPurpleTileBody}}
                         </p>
-                        
+
                         <div class="angle-link-container">
                             <a href="/industry-partners" class="angle-link text-light">Exhibit & Support</a>
                         </div>
@@ -193,7 +193,7 @@
                 <div class="row">
                     <div class="col-md-8 offset-md-2 pt-5">
                         <p class="text-white font-lg w-semibold">
-                            Don’t miss a thing! Sign up to get the latest announcements, important dates, and news. 
+                            Don’t miss a thing! Sign up to get the latest announcements, important dates, and news.
                         </p>
                     </div>
                 </div>
@@ -221,7 +221,7 @@
                             <div class="col-4 p-0 d-none d-md-inline newsThumb" style="background-image: url('{{doc.url}}')"></div>
                         {% endif %}
 
-                        
+
                         <div class="col-8 p-0">
                             <div class="meta-info">
                                 <p class=" text-secondary w-light font-italic">News & Updates</h5>
@@ -233,7 +233,7 @@
                                     {{entry.body|striptags|slice(0, 320)}} ...
                                 </p>
                             </div>
-                        </div>  
+                        </div>
                     </div>
                 </a>
             {% endfor %}
@@ -250,11 +250,11 @@
                     <div class="row">
                         <div class="col">
                             <a target="_blank" href="http://evtoday.com/">
-                                <img class="img-fluid w-50" src="/images/endovascular-today.jpg"/>  
+                                <img class="img-fluid w-50" src="/images/endovascular-today.jpg"/>
                             </a>
                         </div>
                     </div>
-            
+
                 </div>
                 <div class="col-md-8 pl-md-6 pt-5 pt-md-0" style="padding-left: 5% !important;">
                         <h3 class="pb-3 text-secondary w-semibold recentering">Endorsements</h3>
@@ -262,7 +262,7 @@
                         {% for endorsement in entry.endorsements %}
                             {% set doc = endorsement.endorsementLogo.first() %}
                             {% if doc %}
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div id="programming-logo">
                                         <a href="{{endorsement.endorsementLink}}">
                                             <img class="img-fluid w-50" src="{{doc.url}}" alt="">
@@ -271,17 +271,17 @@
                                 </div>
                             {% endif %}
 
-                            
+
                         {% endfor %}
 
 
                     </div>
- 
+
             </div>
         </div>
     </section>
 
-    
+
     <section id="viva-app">
         <div class="container">
             <div class="row pt-5">
@@ -299,7 +299,5 @@
         </div>
     </section>
 
- 
+
  {% endblock %}
- 
- 

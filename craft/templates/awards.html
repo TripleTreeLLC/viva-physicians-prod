@@ -63,12 +63,11 @@
                     <div class="col">
                         <div class="container">
                             <h2 class="mb-3">The Live Award</h2>
-                            
+
                             {{entry.liveAwardBodyCopy}}
 
                             <h4 class="text-secondary py-4">{{entry.liveAwardHonoreeHeader}}</h4>
                             <div class="row mb-5">
-                                <div class="row mb-5">
 
                                     {% for recipient in entry.liveAwardRecipient %}
                                         <div class="col-md-2">
@@ -85,8 +84,6 @@
                                             </p>
                                         </div>
                                     {% endfor %}
-                                    
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -103,7 +100,7 @@
                                             <td class="border-left-0 text-left font-lg">{{row.year}}</td>
                                             <td class="text-uppercase font-sm pl-4 align-middle">{{row.winnerAndSpecialty}}</td>
                                             </tr>
-                                        {% endfor %}     
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
@@ -115,13 +112,13 @@
         </div>
 
         <div class="tab-pane fade" id="nav-atlas" role="tabpanel" aria-labelledby="nav-atlas-tab">
- 
+
             <div class="container-fluid">
                 <div class="row">
                     <div class="col">
                         <div class="container">
                             <h2 class="mb-3">The ATLAS Award</h2>
-                            
+
                             {{entry.atlasAwardBodyCopy}}
 
                             <h4 class="text-secondary py-4">{{entry.atlasAwardHonoreeHeader}}</h4>
@@ -142,7 +139,7 @@
                                         </p>
                                     </div>
                                 {% endfor %}
-                                
+
                             </div>
                         </div>
                     </div>
@@ -171,13 +168,13 @@
         </div>
 
         <div class="tab-pane fade" id="nav-vca" role="tabpanel" aria-labelledby="nav-vca-tab">
- 
+
             <div class="container-fluid">
                 <div class="row">
                     <div class="col">
                         <div class="container">
                             <h2 class="mb-3">The Vascular Career Advancement Award</h2>
-                            
+
                             {{entry.vcaAwardBodyCopy}}
 
                             <h4 class="text-secondary py-4">{{entry.vcaAwardHonoreeHeader}}</h4>
@@ -198,8 +195,8 @@
                                     </div>
                                 {% endfor %}
                             </div>
-                        
-                            
+
+
                         </div>
                     </div>
                 </div>
@@ -210,14 +207,14 @@
                             <div class="table-responsive pl-4 bg-white border border-danger">
                                 <table class="table table-bordered m-0 text-muted">
                                     <tbody>
-                                        
+
                                         {% for row in entry.previousVcaRecipientsTable %}
                                             <tr>
                                             <td class="border-left-0 text-left font-lg">{{row.year}}</td>
                                             <td class="text-uppercase font-sm pl-4 align-middle"><b>{{row.awardWinners}}</b></td>
                                             </tr>
                                         {% endfor %}
-                                        
+
                                     </tbody>
                                 </table>
                             </div>
@@ -229,24 +226,65 @@
         </div>
 
         <div class="tab-pane fade" id="nav-veins" role="tabpanel" aria-labelledby="nav-veins-tab">
- 
+
             <div class="container-fluid">
                 <div class="row">
                     <div class="col">
                         <div class="container">
                             <h2 class="mb-3">Venous, Educator, Innovator and National Statesman Award</h2>
-                            <p class="mb-5">Coming to The VEINS at VIVA 2018</p>
-                           
+
+                            {{entry.veinsAwardBodyCopy}}
+
+                            <h4 class="text-secondary py-4">{{entry.veinsAwardHonoreeHeader}}</h4>
+                            <div class="row mb-5">
+                                {% for recipient in entry.veinsAwardRecipient %}
+                                    <div class="col-md-2">
+                                        {% set doc = recipient.headshot.first() %}
+                                        {% if doc %}
+
+                                            <img class="img-fluid pr-2 pb-5" src="{{doc.url}}">
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-md-10">
+                                        <h4 class="text-muted">{{recipient.nameOfRecipient}}</h4>
+                                        <p>
+                                            {{recipient.bodyCopy}}
+                                        </p>
+                                    </div>
+                                {% endfor %}
+                            </div>
+
                         </div>
                     </div>
                 </div>
+
+                {% if entry.previousVeinsRecipientsTable|length > 0 %}
+                <div class="row bg-half-gray pb-5">
+                    <div class="col pb-5">
+                        <div class="container">
+                            <h4 class="text-secondary py-4">Previous VEINS Award Recipents</h4>
+                            <div class="table-responsive pl-4 bg-white border border-danger">
+                                <table class="table table-bordered m-0 text-muted">
+                                    <tbody>
+
+                                        {% for row in entry.previousVeinsRecipientsTable %}
+                                            <tr>
+                                            <td class="border-left-0 text-left font-lg">{{row.year}}</td>
+                                            <td class="text-uppercase font-sm pl-4 align-middle"><b>{{row.awardWinners}}</b></td>
+                                            </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
             </div>
-    
         </div>
 
     </div>
-        
- 
+
+
  {% endblock %}
- 
- 

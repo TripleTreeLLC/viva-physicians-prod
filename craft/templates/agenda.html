@@ -60,7 +60,7 @@
 
               <div class="tab-pane fade show active drop-shadow" id="nav-viva18" role="tabpanel" aria-labelledby="nav-viva18-tab">
 
-                <div class="bg-gray p-md-5 p-2">
+                <div class="bg-gray p-md-5 p-2" id="viva-filter" style="overflow-x:scroll; width:100%;">
                   <form class="search-form">
 
                     <!--<input class="form-control border-0" type="search" placeholder="&#xF002; &#032; sessions, topic, event, speaker..." aria-label="Search">-->
@@ -74,7 +74,7 @@
                         <!--insert options here-->
                       </select>
 
-                      <select style="width:17rem !important;" class="form-control form-control-sm border-0" disabled="true" id="vivatopics" onchange="topicFilter(this.value)">
+                      <select class="mr-2 form-control form-control-sm border-0" disabled="true" id="vivatopics" onchange="topicFilter(this.value)">
                         <!--insert options here-->
                       </select>
 
@@ -84,25 +84,25 @@
 
                 <div class="nav d-flex flex-row justify-content-between" id="nav-tab" role="tablist">
                   <a class="w-25 agenda-tab active btn p-3 border-danger border-bottom-0" id="nav-mon-tab" data-toggle="tab" href="#nav-mon" role="tab" aria-controls="nav-mon" aria-selected="true"
-                  onclick="loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=1&ConferenceDay=2017-09-11', loadSchedule)">
+                  onclick="loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=1&ConferenceDay=2018-11-05', loadSchedule)">
                   <div class="text-center text-uppercase">
                     Mon
                   </div>
                 </a>
                 <a class="w-25 agenda-tab btn p-3 border-danger border-bottom-0" id="nav-tues-tab" data-toggle="tab" href="#nav-tues" role="tab" aria-controls="nav-tues" aria-selected="false"
-                onclick="loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=1&ConferenceDay=2017-09-12', loadSchedule)">
+                onclick="loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=1&ConferenceDay=2018-11-06', loadSchedule)">
                 <div class="text-center text-uppercase">
                   Tues
                 </div>
               </a>
               <a class="w-25 agenda-tab btn p-3 border-danger border-bottom-0" id="nav-wed-tab" data-toggle="tab" href="#nav-wed" role="tab" aria-controls="nav-wed" aria-selected="false"
-              onclick="loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=1&ConferenceDay=2017-09-13', loadSchedule)">
+              onclick="loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=1&ConferenceDay=2018-11-07', loadSchedule)">
               <div class="text-center text-uppercase">
                 Wed
               </div>
             </a>
             <a class="w-25 agenda-tab btn p-3 border-danger border-bottom-0" id="nav-thurs-tab" data-toggle="tab" href="#nav-thurs" role="tab" aria-controls="nav-thurs" aria-selected="false"
-            onclick="loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=1&ConferenceDay=2017-09-14', loadSchedule)">
+            onclick="loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=1&ConferenceDay=2018-11-08', loadSchedule)">
             <div class="text-center text-uppercase">
               Thurs
             </div>
@@ -136,7 +136,7 @@
 
               <div class="tab-pane fade show active drop-shadow" id="nav-viens" role="tabpanel" aria-labelledby="nav-viva18-tab">
 
-                <div class="bg-gray p-md-5 p-2">
+                <div class="bg-gray p-md-5 p-2" id="veins-filter" style="overflow-x:scroll; width:100%;">
                   <form class="search-form">
 
                     <!--input class="form-control border-0" type="search" placeholder="&#xF002; &#032; sessions, topic, event, speaker..." aria-label="Search">-->
@@ -150,7 +150,7 @@
                         <!--insert options here-->
                       </select>
 
-                      <select class="form-control form-control-sm border-0" id="veinstopics" onchange="topicFilterVeins(this.value)">
+                      <select class="mr-2 form-control form-control-sm border-0" id="veinstopics" onchange="topicFilterVeins(this.value)">
                         <!--insert options here-->
                       </select>
 
@@ -160,13 +160,13 @@
 
                 <div class="nav d-flex flex-row justify-content-between" id="nav-tab" role="tablist">
                   <a class="w-50 agenda-tab active btn p-3 border-danger border-bottom-0" id="nav-sun-tab" data-toggle="tab" href="#nav-sun" role="tab" aria-controls="nav-mon" aria-selected="true"
-                  onclick="loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=2&ConferenceDay=2017-09-10', loadSchedule)">
+                  onclick="loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=2&ConferenceDay=2018-11-04', loadSchedule)">
                   <div class="text-center text-uppercase">
                     Sunday
                   </div>
                 </a>
                 <a class="w-50 agenda-tab btn p-3 border-danger border-bottom-0" id="nav-mon-tab" data-toggle="tab" href="#nav-mon" role="tab" aria-controls="nav-tues" aria-selected="false"
-                onclick="loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=2&ConferenceDay=2017-09-11', loadSchedule)">
+                onclick="loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=2&ConferenceDay=2018-11-05', loadSchedule)">
                 <div class="text-center text-uppercase">
                   Monday
                 </div>
@@ -198,7 +198,7 @@
 <script type ="text/javascript">
 
 //toggleVisibility();
-loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=1&ConferenceDay=2017-09-11', loadSchedule);
+loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=1&ConferenceDay=2018-11-05', loadSchedule);
 
 var sessions = new Array();
 var topics = new Array();
@@ -279,12 +279,12 @@ function loadSchedule(xhttp) {
                       var len = mult.length;
                       speakerOptions += "<option>" + mult[0] + "</option>";
                       speakerOptions += "<option>" + mult[1] + "</option>";
-                      speakers.push(mult[0]);
-                      speakers.push(mult[1]);
+                      speakers.push(removeSpan(mult[0]));
+                      speakers.push(removeSpan(mult[1]));
                     }
                     else {
                       speakerOptions += "<option>" + eventSpeakers + "</option>";
-                      speakers.push(eventSpeakers);
+                      speakers.push(removeSpan(eventSpeakers));
                     }
                   }
                 }
@@ -331,12 +331,12 @@ function loadSchedule(xhttp) {
                       var len = mult.length;
                       speakerOptions += "<option>" + mult[0] + "</option>";
                       speakerOptions += "<option>" + mult[1] + "</option>";
-                      speakers.push(mult[0]);
-                      speakers.push(mult[1]);
+                      speakers.push(removeSpan(mult[0]));
+                      speakers.push(removeSpan(mult[1]));
                     }
                     else {
                       speakerOptions += "<option>" + eventSpeakers + "</option>";
-                      speakers.push(eventSpeakers);
+                      speakers.push(removeSpan(eventSpeakers));
                     }
                   }
                 }
@@ -397,12 +397,12 @@ function loadSchedule(xhttp) {
                   var len = mult.length;
                   speakerOptions += "<option>" + mult[0] + "</option>";
                   speakerOptions += "<option>" + mult[1] + "</option>";
-                  speakers.push(mult[0]);
-                  speakers.push(mult[1]);
+                  speakers.push(removeSpan(mult[0]));
+                  speakers.push(removeSpan(mult[1]));
                 }
                 else {
                   speakerOptions += "<option>" + eventSpeakers + "</option>";
-                  speakers.push(eventSpeakers);
+                  speakers.push(removeSpan(eventSpeakers));
                 }
               }
             }
@@ -466,12 +466,12 @@ function loadSchedule(xhttp) {
                 var len = mult.length;
                 speakerOptions += "<option>" + mult[0] + "</option>";
                 speakerOptions += "<option>" + mult[1] + "</option>";
-                speakers.push(mult[0]);
-                speakers.push(mult[1]);
+                speakers.push(removeSpan(mult[0]));
+                speakers.push(removeSpan(mult[1]));
               }
               else {
                 speakerOptions += "<option>" + eventSpeakers + "</option>";
-                speakers.push(eventSpeakers);
+                speakers.push(removeSpan(eventSpeakers));
               }
             }
           }
@@ -570,7 +570,6 @@ function loadSchedule(xhttp) {
   var conferenceSelected = readCookie("conferenceSelected");
   if (conferenceSelected == "veins")
   {
-    console.log(conferenceSelected);
     preVeins();
     document.cookie="conferenceSelected=none";
   }
@@ -592,7 +591,7 @@ function preVeins () {
 
   $(".vivaConferenceOpen").css('display', 'none');
   $(".veinsConferenceOpen").css('display', 'block');
-  loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=2&ConferenceDay=2017-09-10', loadSchedule);
+  loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=2&ConferenceDay=2018-11-04', loadSchedule);
 }
 
 function toggleVisibility () {
@@ -602,7 +601,7 @@ function toggleVisibility () {
     if (veinsFirst == 0)
     {
       veinsFirst = 1;
-      loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=1&ConferenceDay=2017-09-11', loadSchedule);
+      loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=1&ConferenceDay=2018-11-05', loadSchedule);
     }
     $(".vivaConferenceOpen").css('display', 'block');
     $(".veinsConferenceOpen").css('display', 'none');
@@ -611,7 +610,7 @@ function toggleVisibility () {
     if (vivaFirst == 0)
     {
       vivaFirst = 1;
-      loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=2&ConferenceDay=2017-09-10', loadSchedule);
+      loadDoc('http://api.vivapvd.com/api/Site/GetDailySchedule/?Key=z041SOYlSspkDn9MV5zsndnIK9V%2bECui0ect1RZ567jxVDzVNFCBww%3d%3d&ConferenceID=2&ConferenceDay=2018-11-04', loadSchedule);
     }
     $(".vivaConferenceOpen").css('display', 'none');
     $(".veinsConferenceOpen").css('display', 'block');
@@ -666,6 +665,26 @@ function nameToId(name) {
   for(i; i < strLength; i++) {
     id = id.replace("&", "and");
   }
+  i = 0;
+  for(i; i < strLength; i++) {
+    id = id.replace("(", "");
+  }
+  i = 0;
+  for(i; i < strLength; i++) {
+    id = id.replace(")", "");
+  }
+  i = 0;
+  for(i; i < strLength; i++) {
+    id = id.replace("<span>", "");
+  }
+  i = 0;
+  for(i; i < strLength; i++) {
+    id = id.replace("</span>", "");
+  }
+  i = 0;
+  for(i; i < strLength; i++) {
+    id = id.replace("?", "");
+  }
   id = id.replace("<span>", "");
   id = id.replace("</span>", "");
   return id;
@@ -702,9 +721,7 @@ function simpleName(name) {
 function nameFilter(input) {
   var selectedVivaSession = document.getElementById("vivasessions").value;
   var selectedVivaTopic = document.getElementById("vivatopics").value;
-  console.log(sessions);
   var speakerName = simpleName(input);
-  console.log(speakerName);
   $( "li" ).filter( ".speaker" ).css( "display", "block" );
   if (input != "All speakers")
   {
@@ -757,7 +774,6 @@ function nameFilter(input) {
       currentTopic = "#" + currentTopic;
       //Check if topic div has child
       if ($( currentTopic ).find( speakerName ).length == 0) {
-        console.log(currentTopic);
         var refreshes = document.getElementsByClassName(classname);
         for (x = 0; x < refreshes.length; x++)
         {
@@ -810,7 +826,6 @@ function nameFilter(input) {
       {
         updatedSessions += "<option>" + sessions[i] + "</option>";
       }
-      console.log(updatedSessions);
       document.getElementById("vivasessions").innerHTML = updatedSessions;
     }
 
@@ -947,7 +962,6 @@ function nameFilterVeins(input) {
       {
         updatedSessions += "<option>" + sessions[i] + "</option>";
       }
-      console.log(updatedSessions);
       document.getElementById("veinssessions").innerHTML = updatedSessions;
     }
 
@@ -976,8 +990,16 @@ function nameFilterVeins(input) {
   }
 }
 
+function removeSpan(name)
+{
+  name = name.replace("<span>", "");
+  i = 0;
+  name = name.replace("</span>", "");
+  return name;
+}
+
 function sessionFilter(input) {
-  var selectedVivaSpeaker = document.getElementById("vivaspeakers").value;
+  var selectedVivaSpeaker = simpleName(document.getElementById("vivaspeakers").value);
   $( ".session" ).filter( ".panel-heading" ).css( "display", "block" );
   if (input != "All sessions")
   {
@@ -1017,6 +1039,7 @@ function sessionFilter(input) {
         {
           var speakerId = nameToId(selectedVivaSpeaker);
           speakerId = "#" + speakerId;
+          console.log("speaker " + speakerId + " | " + currentTopic);
           if ($( currentTopic ).find( speakerId ).length > 0)
           {
             updatedTopics += "<option>" + topics[i] + "</option>";
@@ -1033,22 +1056,23 @@ function sessionFilter(input) {
     $( ".session" ).not( sessionId ).css( "display", "none" );
     $( ".panel-collapse" ).filter( showInput ).addClass( "show" );
     $( ".panel-collapse" ).not( showInput ).removeClass( "show" );
+
     //iterate through speaker list
     var updatedSpeakers = "";
     for (i = 0; i < speakers.length; i++)
     {
-      var speaker = speakers[i];
+      var fullSpeaker = speakers[i];
+      var speaker = simpleName(speakers[i]);
       var speakerId = nameToId(speaker);
       speakerId = "#" + speakerId;
       if ($( showInput ).find( speakerId ).length > 0 ) {
         if (selectedVivaSpeaker == speaker) {
-          updatedSpeakers += "<option selected='true'>" + speaker + "</option>";
+          updatedSpeakers += "<option selected='true'>" + fullSpeaker + "</option>";
         }
         else {
-          updatedSpeakers += "<option>" + speaker + "</option>";
+          updatedSpeakers += "<option>" + fullSpeaker + "</option>";
         }
       }
-      //console.log($( "#Aortic_Armageddon" ).find( "#Daniel_Clair" ).length);
     }
 
     //Update speaker list
@@ -1153,7 +1177,7 @@ function sessionFilter(input) {
       var updatedSpeakers = "";
       for (i = 0; i < speakers.length; i++)
       {
-        if (selectedVivaSpeaker == speakers[i])
+        if (selectedVivaSpeaker == simpleName(speakers[i]))
         {
           updatedSpeakers += "<option selected='true'>" + speakers[i] + "</option>";
         }
@@ -1187,7 +1211,7 @@ function sessionFilter(input) {
 }
 
 function sessionFilterVeins(input) {
-  var selectedVeinsSpeaker = document.getElementById("veinsspeakers").value;
+  var selectedVeinsSpeaker = simpleName(document.getElementById("veinsspeakers").value);
   $( ".session" ).filter( ".panel-heading" ).css( "display", "block" );
   if (input != "All sessions")
   {
@@ -1245,18 +1269,18 @@ function sessionFilterVeins(input) {
     var updatedSpeakers = "";
     for (i = 0; i < speakers.length; i++)
     {
-      var speaker = speakers[i];
+      var fullSpeaker = speakers[i];
+      var speaker = simpleName(speakers[i]);
       var speakerId = nameToId(speaker);
       speakerId = "#" + speakerId;
       if ($( showInput ).find( speakerId ).length > 0 ) {
-        if (selectedVeinsSpeaker == speaker) {
-          updatedSpeakers += "<option selected='true'>" + speaker + "</option>";
+        if (selectedVivaSpeaker == speaker) {
+          updatedSpeakers += "<option selected='true'>" + fullSpeaker + "</option>";
         }
         else {
-          updatedSpeakers += "<option>" + speaker + "</option>";
+          updatedSpeakers += "<option>" + fullSpeaker + "</option>";
         }
       }
-      //console.log($( "#Aortic_Armageddon" ).find( "#Daniel_Clair" ).length);
     }
 
     //Update speaker list
@@ -1361,7 +1385,7 @@ function sessionFilterVeins(input) {
       var updatedSpeakers = "";
       for (i = 0; i < speakers.length; i++)
       {
-        if (selectedVeinsSpeaker == speakers[i])
+        if (selectedVeinsSpeaker == simpleName(speakers[i]))
         {
           updatedSpeakers += "<option selected='true'>" + speakers[i] + "</option>";
         }
@@ -1395,8 +1419,7 @@ function sessionFilterVeins(input) {
 }
 
 function topicFilterVeins(input) {
-  //If statement for viva or veins
-  var selectedVeinsSpeaker = document.getElementById("veinsspeakers").value;
+  var selectedVeinsSpeaker = simpleName(document.getElementById("veinsspeakers").value);
   var selectedVeinsSession = document.getElementById("veinssessions").value;
   $( ".topic" ).filter( ".panel-title" ).css( "display", "block" );
   if (input != "All topics")
@@ -1438,7 +1461,7 @@ function topicFilterVeins(input) {
 
 function topicFilter(input) {
   //If statement for viva or veins
-  var selectedVivaSpeaker = document.getElementById("vivaspeakers").value;
+  var selectedVivaSpeaker = simpleName(document.getElementById("vivaspeakers").value);
   var selectedVivaSession = document.getElementById("vivasessions").value;
   $( ".topic" ).filter( ".panel-title" ).css( "display", "block" );
   if (input != "All topics")

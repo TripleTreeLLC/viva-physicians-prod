@@ -23,7 +23,6 @@
 
 {% block main %}
 
-
     <header id="header">
         <div class="container-fluid app-header text-light reformat-header">
             <div class="row fixrow pc-adjuster">
@@ -89,7 +88,7 @@
                             <p> Plan by creating a favorites list of presentations you don’t want to miss</p>
                         </div>
                     </div>
-                    <div class="circle1 d-flex align-items-center justify-content-center"><img class="img-fluid p-40" src="/images/plan-icon.png"></div>
+                    <div class="circle1 d-flex align-items-center justify-content-center"><img class="img-fluid p-40" src="/images/plan-icon.png" style="height:100% !important;"></div>
                     </div>
                     <h2 class="text-uppercase text-center mt-4 font-lg">Plan</h2>
                 </div>
@@ -100,7 +99,7 @@
                             <p>Presentations are shown during and after the meeting for reference</p>
                         </div>
                     </div>
-                    <div class="circle1 d-flex align-items-center justify-content-center"><img class="img-fluid p-40" src="/images/reference-icon.png"></div>
+                    <div class="circle1 d-flex align-items-center justify-content-center"><img class="img-fluid p-40" src="/images/reference-icon.png" style="height:100% !important;"></div>
                     </div>
                     <h2 class="text-uppercase text-center mt-4 font-lg">Reference</h2>
                 </div>
@@ -114,7 +113,7 @@
                             <p>Watch various sessions and live cases in real-time</p>
                         </div>
                     </div>
-                    <div class="circle1 d-flex align-items-center justify-content-center"><img class="img-fluid p-40" src="/images/watch-icon.png"></div>
+                    <div class="circle1 d-flex align-items-center justify-content-center"><img class="img-fluid p-40" src="/images/watch-icon.png" style="height:100% !important;"></div>
                     </div>
                     <h2 class="text-uppercase text-center mt-4 font-lg">Watch</h2>
                 </div>
@@ -125,7 +124,7 @@
                             <p>Navigate using the interactive conference map</p>
                         </div>
                     </div>
-                    <div class="circle1 d-flex align-items-center justify-content-center"><img class="img-fluid p-40" src="/images/navigate-icon.png"></div>
+                    <div class="circle1 d-flex align-items-center justify-content-center"><img class="img-fluid p-40" src="/images/navigate-icon.png" style="height:100% !important;"></div>
                     </div>
                     <h2 class="text-uppercase text-center mt-4 font-lg">Navigate</h2>
                 </div>
@@ -138,7 +137,7 @@
                             <p>Interact with faculty through Q&A function during the meeting</p>
                         </div>
                     </div>
-                    <div class="circle1 d-flex align-items-center justify-content-center"><img class="img-fluid p-40" src="/images/interact-icon.png"></div>
+                    <div class="circle1 d-flex align-items-center justify-content-center"><img class="img-fluid p-40" src="/images/interact-icon.png" style="height:100% !important;"></div>
                     </div>
                     <h2 class="text-uppercase text-center mt-4 font-lg">Interact</h2>
                 </div>
@@ -149,7 +148,7 @@
                             <p>Access the Device Library, Buyers Guide, eBags, and much more!</p>
                         </div>
                     </div>
-                    <div class="circle1 d-flex align-items-center justify-content-center"><img class="img-fluid p-40" src="/images/access-icon.png"></div>
+                    <div class="circle1 d-flex align-items-center justify-content-center"><img class="img-fluid p-40" src="/images/access-icon.png" style="height:100% !important;"></div>
                     </div>
                     <h2 class="text-uppercase text-center mt-4 font-lg">Access</h2>
                 </div>
@@ -163,12 +162,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 pr-md-0 pt-5">
-                    <img class="img-fluid w-75" src="/images/register-steps.jpg"/>
+                    <img class="img-fluid w-75" src="/images/register-steps.jpg" style="display: block;margin: auto;"/>
                 </div>
                 <div class="col-md-6 pl-md-5 pt-5 pb-5 numberedList">
                     <h2>Register</h2>
                     {{entry.registerBody}}
-                    <a href="{{entry.logInLink}}" class="angle-link">Log In</a>
+                    <a target="_blank" href="{{entry.logInLink}}" class="angle-link">Log In</a>
                 </div>
             </div>
         </div>

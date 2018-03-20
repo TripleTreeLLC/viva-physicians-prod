@@ -152,6 +152,23 @@ li {
   color: #414042;
 }
 
+@supports (-ms-ime-align:auto) {
+  @media (max-width: 600px) {
+    #viva-filter
+    {
+      /*display: none;*/
+    }
+    #veins-filter
+    {
+      /*display: none;*/
+    }
+  }
+}
+
+#programming-logo {
+  padding: 10px;
+}
+
 small {
   font-size: 80%; }
 

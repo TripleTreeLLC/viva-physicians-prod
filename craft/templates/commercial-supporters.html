@@ -36,34 +36,34 @@
             </div>
         </div>
     </header>
-   
+
 
     <section id="list">
         <div class="container matchwidth">
 
             <div class="row">
                 <div class="col pb-5 pt-50">
-                    <div class="table-responsive pl-4 bg-white border border-danger drop-shadow">
+                    <!--<div class="table-responsive pl-4 bg-white border border-danger drop-shadow">
                         <p style="margin-top:1rem;">
                             Coming soon!
                         </p>
-                    </div>
-                
-                    <!--
+                    </div>-->
+
+
                     <nav>
                         <div class="nav text-uppercase" id="nav-tab" role="tablist">
                             <a class="nav-item active mr-4" id="nav-viva18-tab" data-toggle="tab" href="#nav-viva18" role="tab" aria-controls="nav-viva18" aria-selected="true">VIVA 2018</a>
-                            <a class="nav-item" id="nav-viens-tab" data-toggle="tab" href="#nav-viens" role="tab" aria-controls="nav-viens" aria-selected="false">The Viens at VIVA</a>
+                            <!--<a class="nav-item" id="nav-viens-tab" data-toggle="tab" href="#nav-viens" role="tab" aria-controls="nav-viens" aria-selected="false">The Viens at VIVA</a>-->
                         </div>
                     </nav>
-                    -->
+
                 </div>
             </div>
 
-            <!--
+
             <div class="row pb-6">
                 <div class="col">
-                    
+
                     <div class="tab-content" id="nav-tabContent">
 
                         <div class="tab-pane fade show active" id="nav-viva18" role="tabpanel" aria-labelledby="nav-viva18-tab">
@@ -73,32 +73,32 @@
                                         <tr class="pl-4">
                                             <ul id="viva-list-sup" class="list-unstyled">
 
-                                            </ul>  
+                                            </ul>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
 
-                        <div class="tab-pane fade" id="nav-viens" role="tabpanel" aria-labelledby="nav-viens-tab">
+                    <!--<div class="tab-pane fade" id="nav-viens" role="tabpanel" aria-labelledby="nav-viens-tab">
                             <div class="table-responsive pl-4 bg-white border border-danger drop-shadow">
                                 <table class="table m-0 font-sm text-uppercase text-mute less-margin mb-40">
                                     <tbody>
                                         <tr class="pl-4">
                                             <ul id="veins-list-sup" class="list-unstyled">
 
-                                            </ul>  
+                                            </ul>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+                        </div>-->
 
                     </div>
-                    -->
+
                 </div>
             </div>
-           
+
 
 
         </div>
@@ -107,7 +107,7 @@
 
 
     <script type ="text/javascript">
-        loadDoc('http://rest.vivapvd.com/supporters/', myFunction1);
+        loadDoc('https://industry18.vivapvd.com/WebService.asmx/GetVivaSupporters?id=All', myFunction1);
 
             function loadDoc(url, cFunction) {
                 var xhttp;
@@ -120,22 +120,22 @@
                 xhttp.open("GET", url, true);
                 xhttp.send();
             }
-          
+
             function myFunction1(xhttp) {
                 var response = JSON.parse(xhttp.responseText);
                 var data = response;
                 var text = "";
                 console.log(data);
                 for (var i = 0; i < data.length; i++) {
-                    text += "<h3>" + data[i].Level + "</h3>";
-                    for ( var j = 0; j < data[i].CompanyList.length; j++) {
-                    text += "<p>" + data[i].CompanyList[j] + "</p>";
+                    text += "<h3>" + data[i].SupportLevel + "</h3>";
+                    for ( var j = 0; j < data[i].SupporterList.length; j++) {
+                    text += "<p>" + data[i].SupporterList[j] + "</p>";
                     };
-                    
+
                 }
                 document.getElementById('viva-list-sup').innerHTML = text
             }
-            
+
     </script>
 
     <script type ="text/javascript">
@@ -152,7 +152,7 @@
                 xhttp.open("GET", url, true);
                 xhttp.send();
             }
-          
+
             function myFunction1(xhttp) {
                 var response = JSON.parse(xhttp.responseText);
                 var data = response;
@@ -163,15 +163,13 @@
                     for ( var j = 0; j < data[i].CompanyList.length; j++) {
                     text += "<p>" + data[i].CompanyList[j] + "</p>";
                     };
-                    
+
                 }
                 document.getElementById('veins-list-sup').innerHTML = text
             }
-            
+
     </script>
-   
+
 
 
  {% endblock %}
- 
- 
